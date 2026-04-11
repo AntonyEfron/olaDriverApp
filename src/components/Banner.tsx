@@ -6,13 +6,13 @@ const Banner = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center pt-8 md:pt-12 overflow-hidden bg-brand-black"
+      className="relative min-h-screen flex flex-col items-center justify-start pt-20 sm:pt-28 lg:pt-0 lg:justify-center overflow-hidden bg-brand-black"
     >
       {/* Dynamic Background */}
       <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[80%] bg-lime/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[60%] bg-lime/5 blur-[100px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl 2xl:max-w-8xl 3xl:max-w-9xl 4xl:max-w-10xl 5xl:max-w-[140rem] mx-auto px-6 md:px-12 w-full relative z-10 py-1 md:py-12">
+      <div className="max-w-7xl 2xl:max-w-8xl 3xl:max-w-9xl 4xl:max-w-10xl 5xl:max-w-[140rem] mx-auto px-6 md:px-12 w-full relative z-10 py-8 lg:py-12">
         <div className="grid lg:grid-cols-2 gap-12 5xl:gap-32 items-center">
           
           {/* Left Content */}
@@ -56,12 +56,12 @@ const Banner = () => {
           </div>
 
           {/* Right Content - Optimized Car Image Composition */}
-          <div className="relative h-[350px] sm:h-[450px] md:h-[550px] 4xl:h-[750px] reveal-right flex items-center justify-end ml-16 lg:ml-40 5xl:ml-72">
+          <div className="hidden lg:flex relative h-[350px] sm:h-[450px] md:h-[550px] 4xl:h-[750px] reveal-right items-center justify-end ml-16 lg:ml-40 5xl:ml-72">
              {/* Background Glow behind Cars */}
              <div className="absolute top-1/2 right-[10%] -translate-y-1/2 w-[80%] h-[70%] bg-lime/20 blur-[100px] sm:blur-[140px] rounded-full pointer-events-none" />
 
              {/* Background Car (Yellow SUV) - Scaled Up */}
-             <div className="absolute top-[5%] right-[-10%] w-[130%] sm:w-[150%] md:w-[180%] animate-floatY opacity-90 z-10" style={{ animationDelay: '0.5s' }}>
+             <div className="hidden lg:block absolute top-[5%] right-[-10%] w-[130%] sm:w-[150%] md:w-[180%] animate-floatY opacity-90 z-10" style={{ animationDelay: '0.5s' }}>
                 <img 
                   src={heroCar2} 
                   alt="Premium SUV" 
@@ -70,7 +70,7 @@ const Banner = () => {
              </div>
              
              {/* Foreground Car (Red Sedan) - Scaled Up */}
-             <div className="absolute bottom-[5%] right-[-15%] w-[100%] sm:w-[130%] md:w-[150%] animate-floatY z-20">
+             <div className="hidden lg:block absolute bottom-[5%] right-[-15%] w-[100%] sm:w-[130%] md:w-[150%] animate-floatY z-20">
                 <img 
                   src={heroCar1} 
                   alt="Luxury Sedan" 
@@ -81,8 +81,8 @@ const Banner = () => {
         </div>
       </div>
 
-      {/* Floating Search Bar - Bottom Positioned */}
-      <div className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 w-full max-w-[90%] md:max-w-5xl 3xl:max-w-7xl 5xl:max-w-8xl z-20">
+      {/* Floating Search Bar - Responsive Positioning */}
+      <div className="relative pt-12 sm:pt-20 lg:pt-0 lg:absolute lg:bottom-12 lg:left-1/2 lg:-translate-x-1/2 w-full max-w-[90%] md:max-w-5xl 3xl:max-w-7xl 5xl:max-w-8xl z-20">
         <div className="bg-white rounded-[24px] sm:rounded-[32px] p-4 sm:p-6 shadow-[0_32px_64px_rgba(0,0,0,0.4)] flex flex-col md:flex-row items-center gap-4 border border-white/20">
           {/* Pickup Location */}
           <div className="flex-1 w-full bg-gray-50 rounded-2xl px-6 py-4 flex items-center gap-4 hover:bg-gray-100 transition-colors cursor-pointer group">

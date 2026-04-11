@@ -64,80 +64,78 @@ const Services = () => {
           </p>
 
           <div className="relative max-w-[85rem] 5xl:max-w-[110rem] mx-auto min-h-[500px] flex items-center justify-center">
-             {/* Center Image - Rotating Background + Car */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-full max-w-lg sm:max-w-2xl md:max-w-4xl mx-auto aspect-square flex items-center justify-center">
-                {/* Rotating Background Decor */}
-                <img 
-                  src={rotatingBg} 
-                  alt="Rotating Decor" 
-                  className="absolute inset-0 w-full h-full object-contain animate-spinSlow " 
-                />
-             </div>
+            {/* Center Image - Rotating Background + Car */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-full max-w-lg sm:max-w-2xl md:max-w-4xl mx-auto aspect-square flex items-center justify-center">
+              {/* Rotating Background Decor */}
+              <img
+                src={rotatingBg}
+                alt="Rotating Decor"
+                className="absolute inset-0 w-full h-full object-contain animate-spinSlow "
+              />
+            </div>
 
-             {/* Background Rings */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] sm:w-[800px] sm:h-[800px] 5xl:w-[1200px] 5xl:h-[1200px] opacity-10 pointer-events-none hidden lg:block">
-                {[1, 2, 3].map(i => (
-                  <div key={i} className="absolute inset-0 border border-black rounded-full" style={{ transform: `scale(${0.3 + i*0.2})` }} />
-                ))}
-             </div>
+            {/* Background Rings */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] sm:w-[800px] sm:h-[800px] 5xl:w-[1200px] 5xl:h-[1200px] opacity-10 pointer-events-none hidden lg:block">
+              {[1, 2, 3].map(i => (
+                <div key={i} className="absolute inset-0 border border-black rounded-full" style={{ transform: `scale(${0.3 + i * 0.2})` }} />
+              ))}
+            </div>
 
-             {/* Features Arc - Desktop (Hidden on mobile) */}
-             <div className="hidden lg:flex justify-between w-full h-full absolute inset-0 z-20 pointer-events-none px-4">
-                {/* Left Side Arc */}
-                <div className="flex flex-col justify-around text-right h-full py-12 pointer-events-auto">
-                    {features.slice(0, 3).map((feat, i) => (
-                      <div 
-                        key={i} 
-                        className={`flex gap-6 items-start group max-w-xs transition-all duration-500 hover:scale-105 ${
-                          i === 1 ? '-translate-x-28' : 'translate-x-4'
-                        }`}
-                      >
-                        <div className="flex-1 order-1">
-                          <h4 className="text-lg 5xl:text-3xl font-black text-gray-900 mb-1">{feat.title}</h4>
-                          <p className="text-sm 5xl:text-xl text-gray-500 leading-relaxed">{feat.desc}</p>
-                        </div>
-                        <div className="w-12 h-12 5xl:w-20 5xl:h-20 rounded-2xl bg-lime flex items-center justify-center flex-shrink-0 group-hover:rotate-6 transition-transform shadow-lg order-2">
-                          <div className="5xl:scale-150">{feat.icon}</div>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-
-                {/* Right Side Arc */}
-                <div className="flex flex-col justify-around text-left h-full py-12 pointer-events-auto">
-                    {features.slice(3, 6).map((feat, i) => (
-                      <div 
-                        key={i} 
-                        className={`flex gap-6 items-start group max-w-xs transition-all duration-500 hover:scale-105 ${
-                          i === 1 ? 'translate-x-28' : '-translate-x-4'
-                        }`}
-                      >
-                        <div className="w-12 h-12 5xl:w-20 5xl:h-20 rounded-2xl bg-lime flex items-center justify-center flex-shrink-0 group-hover:rotate-6 transition-transform shadow-lg">
-                          <div className="5xl:scale-150">{feat.icon}</div>
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="text-lg 5xl:text-3xl font-black text-gray-900 mb-1">{feat.title}</h4>
-                          <p className="text-sm 5xl:text-xl text-gray-500 leading-relaxed">{feat.desc}</p>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-             </div>
-
-             {/* Fallback Grid - Mobile/Tablet */}
-             <div className="lg:hidden grid sm:grid-cols-2 gap-10 text-left mt-16 relative z-20 px-4">
-                {features.map((feat, i) => (
-                  <div key={i} className="flex gap-4 items-start group">
-                    <div className="w-10 h-10 rounded-xl bg-lime flex items-center justify-center flex-shrink-0">
-                      {feat.icon}
+            {/* Features Arc - Desktop (Hidden on mobile) */}
+            <div className="hidden lg:flex justify-between w-full h-full absolute inset-0 z-20 pointer-events-none px-4">
+              {/* Left Side Arc */}
+              <div className="flex flex-col justify-around text-right h-full py-12 pointer-events-auto">
+                {features.slice(0, 3).map((feat, i) => (
+                  <div
+                    key={i}
+                    className={`flex gap-6 items-start group max-w-xs transition-all duration-500 hover:scale-105 ${i === 1 ? '-translate-x-28' : 'translate-x-4'
+                      }`}
+                  >
+                    <div className="flex-1 order-1">
+                      <h4 className="text-lg 5xl:text-3xl font-black text-gray-900 mb-1">{feat.title}</h4>
+                      <p className="text-sm 5xl:text-xl text-gray-500 leading-relaxed">{feat.desc}</p>
                     </div>
-                    <div>
-                      <h4 className="text-base font-black text-gray-900 mb-1">{feat.title}</h4>
-                      <p className="text-xs text-gray-500 leading-relaxed">{feat.desc}</p>
+                    <div className="w-12 h-12 5xl:w-20 5xl:h-20 rounded-2xl bg-lime flex items-center justify-center flex-shrink-0 group-hover:rotate-6 transition-transform shadow-lg order-2">
+                      <div className="5xl:scale-150">{feat.icon}</div>
                     </div>
                   </div>
                 ))}
-             </div>
+              </div>
+
+              {/* Right Side Arc */}
+              <div className="flex flex-col justify-around text-left h-full py-12 pointer-events-auto">
+                {features.slice(3, 6).map((feat, i) => (
+                  <div
+                    key={i}
+                    className={`flex gap-6 items-start group max-w-xs transition-all duration-500 hover:scale-105 ${i === 1 ? 'translate-x-28' : '-translate-x-4'
+                      }`}
+                  >
+                    <div className="w-12 h-12 5xl:w-20 5xl:h-20 rounded-2xl bg-lime flex items-center justify-center flex-shrink-0 group-hover:rotate-6 transition-transform shadow-lg">
+                      <div className="5xl:scale-150">{feat.icon}</div>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-lg 5xl:text-3xl font-black text-gray-900 mb-1">{feat.title}</h4>
+                      <p className="text-sm 5xl:text-xl text-gray-500 leading-relaxed">{feat.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Fallback Grid - Mobile/Tablet */}
+            <div className="lg:hidden grid sm:grid-cols-2 gap-10 text-left mt-16 relative z-20 px-4">
+              {features.map((feat, i) => (
+                <div key={i} className="flex gap-4 items-start group">
+                  <div className="w-10 h-10 rounded-xl bg-lime flex items-center justify-center flex-shrink-0">
+                    {feat.icon}
+                  </div>
+                  <div>
+                    <h4 className="text-base font-black text-gray-900 mb-1">{feat.title}</h4>
+                    <p className="text-xs text-gray-500 leading-relaxed">{feat.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -146,24 +144,24 @@ const Services = () => {
       <section className="py-24 sm:py-32 bg-white">
         <div className="max-w-7xl 2xl:max-w-8xl 3xl:max-w-9xl 4xl:max-w-10xl 5xl:max-w-[124rem] mx-auto px-6 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl 5xl:text-7xl font-black text-gray-900 mb-16 sm:mb-24 px-4 sm:px-0">
-            Start Your <span className="text-lime-dark">Journey</span> <br className="hidden sm:block"/> in Minutes
+            Start Your <span className="text-lime-dark">Journey</span> <br className="hidden sm:block" /> in Minutes
           </h2>
-          
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 relative px-4">
-             {/* Connector arrows (Desktop only) */}
-             <div className="hidden md:block absolute top-[20%] left-1/3 w-[15%] h-px border-t-2 border-dashed border-lime-dark z-0" />
-             <div className="hidden md:block absolute top-[20%] right-1/3 w-[15%] h-px border-t-2 border-dashed border-lime-dark z-0" />
 
-             {steps.map((s, i) => (
-               <div key={i} className="bg-brand-black rounded-[32px] sm:rounded-[40px] p-8 sm:p-12 text-left relative z-10 transition-transform hover:-translate-y-2">
-                 <div className="w-12 h-12 sm:w-16 sm:h-16 5xl:w-24 5xl:h-24 rounded-full bg-lime flex items-center justify-center mb-6 sm:mb-8">
-                   <div className="5xl:scale-150">{s.icon}</div>
-                 </div>
-                 <div className="text-lime text-[10px] sm:text-xs 5xl:text-lg font-black uppercase mb-4 tracking-tighter">{s.step}</div>
-                 <h3 className="text-xl sm:text-2xl 5xl:text-4xl font-black text-white mb-4 leading-tight">{s.title}</h3>
-                 <p className="text-gray-400 text-xs sm:text-sm 5xl:text-xl leading-relaxed">{s.desc}</p>
-               </div>
-             ))}
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 relative px-4">
+            {/* Connector arrows (Desktop only) */}
+            <div className="hidden md:block absolute top-[20%] left-1/3 w-[15%] h-px border-t-2 border-dashed border-lime-dark z-0" />
+            <div className="hidden md:block absolute top-[20%] right-1/3 w-[15%] h-px border-t-2 border-dashed border-lime-dark z-0" />
+
+            {steps.map((s, i) => (
+              <div key={i} className="bg-brand-black rounded-[32px] sm:rounded-[40px] p-8 sm:p-12 text-left relative z-10 transition-transform hover:-translate-y-2">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 5xl:w-24 5xl:h-24 rounded-full bg-lime flex items-center justify-center mb-6 sm:mb-8">
+                  <div className="5xl:scale-150">{s.icon}</div>
+                </div>
+                <div className="text-lime text-[10px] sm:text-xs 5xl:text-lg font-black uppercase mb-4 tracking-tighter">{s.step}</div>
+                <h3 className="text-xl sm:text-2xl 5xl:text-4xl font-black text-white mb-4 leading-tight">{s.title}</h3>
+                <p className="text-gray-400 text-xs sm:text-sm 5xl:text-xl leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
