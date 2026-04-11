@@ -65,7 +65,7 @@ const Services = () => {
 
           <div className="relative max-w-[85rem] 5xl:max-w-[110rem] mx-auto min-h-[500px] flex items-center justify-center">
             {/* Center Image - Rotating Background + Car */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-full max-w-lg sm:max-w-2xl md:max-w-4xl mx-auto aspect-square flex items-center justify-center">
+            <div className="hidden lg:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-full max-w-lg sm:max-w-2xl md:max-w-4xl mx-auto aspect-square items-center justify-center">
               {/* Rotating Background Decor */}
               <img
                 src={rotatingBg}
