@@ -82,7 +82,7 @@ const Banner = () => {
       </div>
 
       {/* Floating Search Bar - Responsive Positioning */}
-      <div className="relative pt-12 sm:pt-20 lg:pt-0 lg:absolute lg:bottom-12 lg:left-1/2 lg:-translate-x-1/2 w-full max-w-[90%] md:max-w-5xl 3xl:max-w-7xl 5xl:max-w-8xl z-20">
+      <div className="relative pt-12 sm:pt-20 lg:pt-0 lg:absolute lg:bottom-12 lg:left-1/2 lg:-translate-x-1/2 w-full max-w-[90%] md:max-w-5xl 3xl:max-w-7xl 5xl:max-w-8xl z-20 mb-4 lg:mb-0">
         <div className="bg-white rounded-[24px] sm:rounded-[32px] p-4 sm:p-6 shadow-[0_32px_64px_rgba(0,0,0,0.4)] flex flex-col md:flex-row items-center gap-4 border border-white/20">
           {/* Pickup Location */}
           <div className="flex-1 w-full bg-gray-50 rounded-2xl px-6 py-4 flex items-center gap-4 hover:bg-gray-100 transition-colors cursor-pointer group">
