@@ -17,38 +17,38 @@ const Banner = () => {
           
           {/* Left Content */}
           <div className="reveal">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl 3xl:text-7xl 5xl:text-8xl font-black text-white leading-[1.05] tracking-tight mb-6">
-              Find the Perfect Car <br />
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl 3xl:text-7xl 5xl:text-8xl font-black text-white leading-[1.05] tracking-tight mb-6">
+              Find the Perfect Car <br className="hidden xs:block" />
               <span className="text-white">For Your Next Journey</span>
             </h1>
             
-            <p className="text-gray-400 text-lg md:text-xl 3xl:text-2xl 5xl:text-3xl max-w-xl 3xl:max-w-3xl mb-12 leading-relaxed">
+            <p className="text-gray-400 text-sm sm:text-lg md:text-xl 3xl:text-2xl 5xl:text-3xl max-w-xl 3xl:max-w-3xl mb-12 leading-relaxed">
               Choose from thousands of vehicles across multiple cities. 
               Book instantly, drive comfortably, and enjoy flexible rental plans.
             </p>
 
             {/* Stats - Redesigned with Dividers */}
-            <div className="flex items-center gap-6 sm:gap-10 md:gap-14 mb-16">
-              <div className="flex items-center gap-4">
-                <Star className="w-6 h-6 sm:w-8 sm:h-8 5xl:w-12 5xl:h-12 text-lime fill-lime" />
+            <div className="flex flex-wrap items-center gap-y-8 gap-x-6 sm:gap-10 md:gap-14 mb-16">
+              <div className="flex items-center gap-3 sm:gap-4">
+                <Star className="w-5 h-5 sm:w-8 sm:h-8 5xl:w-12 5xl:h-12 text-lime fill-lime" />
                 <div className="pr-6 sm:pr-10 md:pr-14 border-r border-white/10">
-                  <div className="text-2xl sm:text-3xl 5xl:text-5xl font-black text-white">4.8</div>
+                  <div className="text-xl sm:text-3xl 5xl:text-5xl font-black text-white">4.8</div>
                   <div className="text-[10px] sm:text-xs 5xl:text-lg text-gray-500 font-bold uppercase tracking-widest">Rating</div>
                 </div>
               </div>
               
-              <div className="flex items-center gap-4">
-                <Car className="w-6 h-6 sm:w-8 sm:h-8 5xl:w-12 5xl:h-12 text-lime" />
+              <div className="flex items-center gap-3 sm:gap-4">
+                <Car className="w-5 h-5 sm:w-8 sm:h-8 5xl:w-12 5xl:h-12 text-lime" />
                 <div className="pr-6 sm:pr-10 md:pr-14 border-r border-white/10">
-                  <div className="text-2xl sm:text-3xl 5xl:text-5xl font-black text-white">10,000</div>
+                  <div className="text-xl sm:text-3xl 5xl:text-5xl font-black text-white">10,000</div>
                   <div className="text-[10px] sm:text-xs 5xl:text-lg text-gray-500 font-bold uppercase tracking-widest">Cars</div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4">
-                <MapPin className="w-6 h-6 sm:w-8 sm:h-8 5xl:w-12 5xl:h-12 text-lime" />
+              <div className="flex items-center gap-3 sm:gap-4">
+                <MapPin className="w-5 h-5 sm:w-8 sm:h-8 5xl:w-12 5xl:h-12 text-lime" />
                 <div>
-                  <div className="text-2xl sm:text-3xl 5xl:text-5xl font-black text-white">50</div>
+                  <div className="text-xl sm:text-3xl 5xl:text-5xl font-black text-white">50</div>
                   <div className="text-[10px] sm:text-xs 5xl:text-lg text-gray-500 font-bold uppercase tracking-widest">Cities</div>
                 </div>
               </div>
