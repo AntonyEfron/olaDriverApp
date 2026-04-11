@@ -12,17 +12,17 @@ const Banner = () => {
       <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[80%] bg-lime/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[60%] bg-lime/5 blur-[100px] rounded-full pointer-events-none" />
 
-      <div className="max-w-7xl 2xl:max-w-8xl 3xl:max-w-9xl 4xl:max-w-10xl 5xl:max-w-[140rem] mx-auto px-6 md:px-12 w-full relative z-10 py-8 lg:py-12">
+      <div className="max-w-7xl 2xl:max-w-8xl 3xl:max-w-9xl 4xl:max-w-10xl 5xl:max-w-[140rem] mx-auto px-4 sm:px-12 w-full relative z-10 py-8 lg:py-12">
         <div className="grid lg:grid-cols-2 gap-12 5xl:gap-32 items-center">
           
           {/* Left Content */}
           <div className="reveal">
-            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl 3xl:text-7xl 5xl:text-8xl font-black text-white leading-[1.05] tracking-tight mb-6">
+            <h1 className="text-2xl xs:text-4xl sm:text-5xl md:text-6xl 3xl:text-7xl 5xl:text-8xl font-black text-white leading-[1.05] tracking-tighter mb-6">
               Find the Perfect Car <br className="hidden xs:block" />
               <span className="text-white">For Your Next Journey</span>
             </h1>
             
-            <p className="text-gray-400 text-sm sm:text-lg md:text-xl 3xl:text-2xl 5xl:text-3xl max-w-xl 3xl:max-w-3xl mb-12 leading-relaxed">
+            <p className="text-gray-400 text-xs sm:text-lg md:text-xl 3xl:text-2xl 5xl:text-3xl max-w-xl 3xl:max-w-3xl mb-12 leading-relaxed">
               Choose from thousands of vehicles across multiple cities. 
               Book instantly, drive comfortably, and enjoy flexible rental plans.
             </p>
