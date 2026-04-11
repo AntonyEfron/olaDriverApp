@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Send, X, Bot, Sparkles, User, ChevronDown } from 'lucide-react';
+import { Send, X, Bot, Sparkles, ChevronDown } from 'lucide-react';
 
 interface Message {
     id: number;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronRight, Star, Settings, User, Fuel } from 'lucide-react';
+import { ChevronRight, Settings, User, Fuel } from 'lucide-react';
 import swiftImg from '../assets/images/png-clipart-india-suzuki-swift-m-removebg-preview.png';
 import cretaImg from '../assets/images/png-transparent-hyundai-motor-co-removebg-preview.png';
 import luxuryImg from '../assets/images/png-clipart-2016-mercedes-benz-s-removebg-preview.png';
