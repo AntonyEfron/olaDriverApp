@@ -1,193 +1,122 @@
+import { Star, Car, MapPin, Calendar, Search } from 'lucide-react';
+import heroCar1 from '../assets/images/download (1) (1).png';
+import heroCar2 from '../assets/images/AndamanAdventure-3.png';
+
 const Banner = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #0d0d0d 0%, #111111 50%, #0a1a00 100%)' }}
+      className="relative min-h-screen flex items-center pt-8 md:pt-12 overflow-hidden bg-brand-black"
     >
-      {/* Decorative orbs */}
-      <div
-        className="orb orb-lime"
-        style={{ width: 500, height: 500, top: '-100px', left: '-150px', animationDuration: '8s' }}
-      />
-      <div
-        className="orb orb-lime"
-        style={{ width: 300, height: 300, bottom: '0px', right: '-80px', animationDuration: '6s', animationDelay: '2s' }}
-      />
-      <div className="hero-noise" />
+      {/* Dynamic Background */}
+      <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[80%] bg-lime/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[60%] bg-lime/5 blur-[100px] rounded-full pointer-events-none" />
 
-      {/* Grid lines overlay */}
-      <div
-        className="absolute inset-0 opacity-5 pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(200,230,0,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(200,230,0,0.3) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
-      />
-
-      <div className="max-w-7xl mx-auto px-5 relative z-10 pt-28 pb-20 w-full">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-
-          {/* Left — text */}
-          <div>
-            {/* Badge */}
-            <div
-              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest mb-6 animate-fadeInUp"
-              style={{
-                background: 'rgba(200,230,0,0.12)',
-                border: '1px solid rgba(200,230,0,0.3)',
-                color: '#C8E600',
-              }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-lime inline-block animate-pulse" />
-              Premium Car Rentals · India's #1
-            </div>
-
-            <h1 className="text-5xl md:text-7xl font-black leading-[1.05] mb-6 text-white animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
-              Drive Your
-              <br />
-              <span className="text-gradient-lime">Dreams</span>
-              <br />
-              <span className="text-white">with Ola Cars</span>
+      <div className="max-w-7xl 2xl:max-w-8xl 3xl:max-w-9xl 4xl:max-w-10xl 5xl:max-w-[140rem] mx-auto px-6 md:px-12 w-full relative z-10 py-1 md:py-12">
+        <div className="grid lg:grid-cols-2 gap-12 5xl:gap-32 items-center">
+          
+          {/* Left Content */}
+          <div className="reveal">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl 3xl:text-7xl 5xl:text-8xl font-black text-white leading-[1.05] tracking-tight mb-6">
+              Find the Perfect Car <br />
+              <span className="text-white">For Your Next Journey</span>
             </h1>
-
-            <p
-              className="text-base md:text-lg text-gray-400 leading-relaxed mb-10 max-w-lg animate-fadeInUp"
-              style={{ animationDelay: '0.25s' }}
-            >
-              Premium, insured vehicles at your fingertips. Daily commute, weekend getaways,
-              or luxury occasions — we have the perfect car for every journey.
+            
+            <p className="text-gray-400 text-lg md:text-xl 3xl:text-2xl 5xl:text-3xl max-w-xl 3xl:max-w-3xl mb-12 leading-relaxed">
+              Choose from thousands of vehicles across multiple cities. 
+              Book instantly, drive comfortably, and enjoy flexible rental plans.
             </p>
 
-            {/* Stats row */}
-            <div className="flex gap-8 mb-10 animate-fadeInUp" style={{ animationDelay: '0.35s' }}>
-              {[
-                { value: '500+', label: 'Premium Cars' },
-                { value: '50K+', label: 'Happy Drivers' },
-                { value: '24/7', label: 'Support' },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <h3 className="text-3xl font-black" style={{ color: '#C8E600' }}>
-                    {stat.value}
-                  </h3>
-                  <p className="text-xs text-gray-400 mt-0.5 font-medium">{stat.label}</p>
+            {/* Stats - Redesigned with Dividers */}
+            <div className="flex items-center gap-6 sm:gap-10 md:gap-14 mb-16">
+              <div className="flex items-center gap-4">
+                <Star className="w-6 h-6 sm:w-8 sm:h-8 5xl:w-12 5xl:h-12 text-lime fill-lime" />
+                <div className="pr-6 sm:pr-10 md:pr-14 border-r border-white/10">
+                  <div className="text-2xl sm:text-3xl 5xl:text-5xl font-black text-white">4.8</div>
+                  <div className="text-[10px] sm:text-xs 5xl:text-lg text-gray-500 font-bold uppercase tracking-widest">Rating</div>
                 </div>
-              ))}
-            </div>
+              </div>
+              
+              <div className="flex items-center gap-4">
+                <Car className="w-6 h-6 sm:w-8 sm:h-8 5xl:w-12 5xl:h-12 text-lime" />
+                <div className="pr-6 sm:pr-10 md:pr-14 border-r border-white/10">
+                  <div className="text-2xl sm:text-3xl 5xl:text-5xl font-black text-white">10,000</div>
+                  <div className="text-[10px] sm:text-xs 5xl:text-lg text-gray-500 font-bold uppercase tracking-widest">Cars</div>
+                </div>
+              </div>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-4 animate-fadeInUp" style={{ animationDelay: '0.45s' }}>
-              <button className="btn-primary text-base px-9 py-4">
-                Start Driving →
-              </button>
-              <button className="btn-secondary text-base px-9 py-4">
-                View Fleet
-              </button>
-            </div>
-
-            {/* Trust badges */}
-            <div className="flex flex-wrap gap-3 mt-8 animate-fadeInUp" style={{ animationDelay: '0.55s' }}>
-              {['✓ Fully Insured', '✓ GPS Tracking', '✓ Instant Booking'].map((badge) => (
-                <span
-                  key={badge}
-                  className="text-xs font-medium px-3 py-1.5 rounded-full"
-                  style={{
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.12)',
-                    color: '#9ca3af',
-                  }}
-                >
-                  {badge}
-                </span>
-              ))}
+              <div className="flex items-center gap-4">
+                <MapPin className="w-6 h-6 sm:w-8 sm:h-8 5xl:w-12 5xl:h-12 text-lime" />
+                <div>
+                  <div className="text-2xl sm:text-3xl 5xl:text-5xl font-black text-white">50</div>
+                  <div className="text-[10px] sm:text-xs 5xl:text-lg text-gray-500 font-bold uppercase tracking-widest">Cities</div>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Right — vehicle cards */}
-          <div className="hidden md:flex flex-col gap-4 animate-slideInRight" style={{ animationDelay: '0.6s' }}>
-            {[
-              { icon: '🚗', name: 'Premium Sedan', tagline: 'From ₹299/day', highlight: true },
-              { icon: '🚙', name: 'SUV', tagline: 'From ₹499/day', highlight: false },
-              { icon: '🏎️', name: 'Luxury', tagline: 'From ₹999/day', highlight: false },
-            ].map((car, i) => (
-              <div
-                key={car.name}
-                className="flex items-center gap-4 rounded-2xl px-6 py-4 cursor-pointer transition-all duration-300 group"
-                style={{
-                  background: car.highlight
-                    ? 'rgba(200,230,0,0.12)'
-                    : 'rgba(255,255,255,0.04)',
-                  border: car.highlight
-                    ? '1px solid rgba(200,230,0,0.35)'
-                    : '1px solid rgba(255,255,255,0.08)',
-                  transform: car.highlight ? 'scale(1.04)' : 'scale(1)',
-                  backdropFilter: 'blur(12px)',
-                  animationDelay: `${0.65 + i * 0.15}s`,
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.transform = 'scale(1.05) translateX(-6px)';
-                  (e.currentTarget as HTMLDivElement).style.borderColor = 'rgba(200,230,0,0.5)';
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.transform = car.highlight ? 'scale(1.04)' : 'scale(1)';
-                  (e.currentTarget as HTMLDivElement).style.borderColor = car.highlight
-                    ? 'rgba(200,230,0,0.35)'
-                    : 'rgba(255,255,255,0.08)';
-                }}
-              >
-                <div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center text-3xl flex-shrink-0"
-                  style={{
-                    background: car.highlight
-                      ? 'rgba(200,230,0,0.2)'
-                      : 'rgba(255,255,255,0.08)',
-                  }}
-                >
-                  {car.icon}
-                </div>
-                <div className="flex-1">
-                  <h4 className="text-white font-semibold text-sm">{car.name}</h4>
-                  <p className="text-xs mt-0.5" style={{ color: '#C8E600' }}>{car.tagline}</p>
-                </div>
-                {car.highlight && (
-                  <span
-                    className="text-xs font-bold px-2 py-1 rounded-full"
-                    style={{ background: '#C8E600', color: '#0A0A0A' }}
-                  >
-                    Popular
-                  </span>
-                )}
-              </div>
-            ))}
+          {/* Right Content - Optimized Car Image Composition */}
+          <div className="relative h-[350px] sm:h-[450px] md:h-[550px] 4xl:h-[750px] reveal-right flex items-center justify-end ml-16 lg:ml-40 5xl:ml-72">
+             {/* Background Glow behind Cars */}
+             <div className="absolute top-1/2 right-[10%] -translate-y-1/2 w-[80%] h-[70%] bg-lime/20 blur-[100px] sm:blur-[140px] rounded-full pointer-events-none" />
 
-            {/* floating card stat */}
-            <div
-              className="rounded-2xl px-6 py-5 mt-2 animate-floatY"
-              style={{
-                background: 'rgba(28,28,28,0.9)',
-                border: '1px solid #2A2A2A',
-                backdropFilter: 'blur(12px)',
-              }}
-            >
-              <p className="text-gray-400 text-xs mb-1">Average savings vs. traditional rental</p>
-              <div className="flex items-end gap-2">
-                <span className="text-4xl font-black" style={{ color: '#C8E600' }}>35%</span>
-                <span className="text-green-400 text-sm font-medium mb-1">↑ more affordable</span>
-              </div>
-            </div>
+             {/* Background Car (Yellow SUV) - Scaled Up */}
+             <div className="absolute top-[5%] right-[-10%] w-[130%] sm:w-[150%] md:w-[180%] animate-floatY opacity-90 z-10" style={{ animationDelay: '0.5s' }}>
+                <img 
+                  src={heroCar2} 
+                  alt="Premium SUV" 
+                  className="w-full h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.6)]"
+                />
+             </div>
+             
+             {/* Foreground Car (Red Sedan) - Scaled Up */}
+             <div className="absolute bottom-[5%] right-[-15%] w-[100%] sm:w-[130%] md:w-[150%] animate-floatY z-20">
+                <img 
+                  src={heroCar1} 
+                  alt="Luxury Sedan" 
+                  className="w-full h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.7)]"
+                />
+             </div>
           </div>
         </div>
       </div>
 
-      {/* Wave divider */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ display: 'block' }}>
-          <path
-            d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z"
-            fill="#1C1C1C"
-          />
-        </svg>
+      {/* Floating Search Bar - Bottom Positioned */}
+      <div className="absolute bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 w-full max-w-[90%] md:max-w-5xl 3xl:max-w-7xl 5xl:max-w-8xl z-20">
+        <div className="bg-white rounded-[24px] sm:rounded-[32px] p-4 sm:p-6 shadow-[0_32px_64px_rgba(0,0,0,0.4)] flex flex-col md:flex-row items-center gap-4 border border-white/20">
+          {/* Pickup Location */}
+          <div className="flex-1 w-full bg-gray-50 rounded-2xl px-6 py-4 flex items-center gap-4 hover:bg-gray-100 transition-colors cursor-pointer group">
+            <MapPin className="w-5 h-5 text-gray-400 group-hover:text-lime transition-colors" />
+            <div className="text-left">
+              <div className="text-[10px] 5xl:text-xs uppercase tracking-wider text-gray-400 font-bold">Pickup Location</div>
+              <div className="text-gray-900 font-bold 5xl:text-xl">New Delhi, India</div>
+            </div>
+          </div>
+
+          {/* Pickup Date */}
+          <div className="w-full md:w-auto md:flex-1 bg-gray-50 rounded-2xl px-6 py-4 flex items-center gap-4 hover:bg-gray-100 transition-colors cursor-pointer group md:border-l md:border-r border-gray-100">
+            <Calendar className="w-5 h-5 text-gray-400 group-hover:text-lime transition-colors" />
+            <div className="text-left">
+              <div className="text-[10px] 5xl:text-xs uppercase tracking-wider text-gray-400 font-bold">Pickup Date</div>
+              <div className="text-gray-900 font-bold 5xl:text-xl">12 Apr, 2026</div>
+            </div>
+          </div>
+
+          {/* Return Date */}
+          <div className="w-full md:w-auto md:flex-1 bg-gray-50 rounded-2xl px-6 py-4 flex items-center gap-4 hover:bg-gray-100 transition-colors cursor-pointer group">
+            <Calendar className="w-5 h-5 text-gray-400 group-hover:text-lime transition-colors" />
+            <div className="text-left">
+              <div className="text-[10px] 5xl:text-xs uppercase tracking-wider text-gray-400 font-bold">Return Date</div>
+              <div className="text-gray-900 font-bold 5xl:text-xl">15 Apr, 2026</div>
+            </div>
+          </div>
+
+          {/* Search Button */}
+          <button className="w-full md:w-auto px-10 sm:px-12 py-5 bg-lime hover:bg-lime-light text-black rounded-2xl font-black flex items-center justify-center gap-3 transition-all duration-300 shadow-[0_12px_24px_rgba(210,238,0,0.3)] hover:shadow-[0_20px_40px_rgba(210,238,0,0.4)] whitespace-nowrap 5xl:text-2xl 5xl:py-8 5xl:px-20">
+            <Search className="w-5 h-5 5xl:w-8 5xl:h-8" />
+            Search Cars
+          </button>
+        </div>
       </div>
     </section>
   );

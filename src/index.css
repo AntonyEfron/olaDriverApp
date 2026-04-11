@@ -6,22 +6,22 @@
    GLOBAL CSS VARIABLES (mirrors src/theme.ts)
    ══════════════════════════════════════════════════════════════ */
 :root {
-  --brand-lime: #C8E600;
-  --brand-lime-dark: #a8c100;
-  --brand-lime-light: #d8f200;
+  --brand-lime: #D2EE00;
+  --brand-lime-dark: #b8cc00;
+  --brand-lime-light: #e1ff00;
   --brand-black: #0A0A0A;
 
-  --dark-bg: #111111;
-  --dark-card: #1C1C1C;
-  --dark-border: #2A2A2A;
+  --dark-bg: #0A0A0A;
+  --dark-card: #151515;
+  --dark-border: #222222;
 
-  --light-bg: #F5F7FA;
-  --light-border: #E5E7EB;
+  --light-bg: #FFFFFF;
+  --light-border: #F0F0F0;
 
   --white: #FFFFFF;
-  --alert-red: #E74C3C;
-  --warn-orange: #E67E22;
-  --text-secondary: #6B7280;
+  --alert-red: #FF3B30;
+  --warn-orange: #FF9500;
+  --text-secondary: #8E8E93;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -48,6 +48,10 @@
 
   button {
     font-family: inherit;
+  }
+
+  .chat-input::placeholder {
+    content: "Type your message...";
   }
 
   a {

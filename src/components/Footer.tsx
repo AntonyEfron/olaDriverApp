@@ -1,208 +1,109 @@
+import { ChevronRight, Facebook, Instagram, Linkedin, Twitter, Sparkles } from 'lucide-react';
+
 const Footer = () => {
   const year = new Date().getFullYear();
 
+  // Exactly matching the ticker items in the screenshot
+  const tickerItems = [
+    "Vehicle Tracking Software",
+    "GPS Fleet Monitoring",
+    "Fleet Analytics Platform",
+    "Driver Performance Tracking",
+    "Multi-Country Fleet Operations",
+    "Automated Dispatch Systems",
+    "Real-time Route Optimization"
+  ];
+
+  // Precisely defined links from the screenshot
+  const companyLinks = ['About', 'Careers', 'Press'];
+  const productLinks = ['Features', 'Pricing', 'Security', 'Integrations'];
+  const resourceLinks = ['Blog', 'Case Studies', 'Documentation', 'Support'];
+  const legalLinks = ['Privacy Policy', 'Terms of Service', 'Compliance'];
+
+  const footerSections = [
+    { title: 'Company', links: companyLinks },
+    { title: 'Product', links: productLinks },
+    { title: 'Resources', links: resourceLinks },
+    { title: 'Legal', links: legalLinks },
+  ];
+
+  const socialLinks = [
+    { icon: Facebook, label: 'Facebook' },
+    { icon: Instagram, label: 'Instagram' },
+    { icon: Linkedin, label: 'LinkedIn' },
+    { icon: Twitter, label: 'Twitter' }
+  ];
+
   return (
-    <footer
-      id="contact"
-      className="relative pt-20 pb-8 overflow-hidden"
-      style={{ background: '#0A0A0A', borderTop: '1px solid #2A2A2A' }}
-    >
-      {/* Background glow */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[200px] pointer-events-none"
-        style={{
-          background: 'radial-gradient(ellipse at top, rgba(200,230,0,0.05) 0%, transparent 70%)',
-        }}
-      />
-
-      <div className="max-w-7xl mx-auto px-5 relative z-10">
-
-        {/* CTA Banner */}
-        <div
-          className="rounded-3xl p-10 mb-16 text-center reveal overflow-hidden relative"
-          style={{
-            background: 'linear-gradient(135deg, rgba(200,230,0,0.12) 0%, rgba(200,230,0,0.04) 100%)',
-            border: '1px solid rgba(200,230,0,0.2)',
-          }}
-        >
-          <div
-            className="absolute inset-0 opacity-5 pointer-events-none"
-            style={{
-              backgroundImage:
-                'linear-gradient(rgba(200,230,0,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(200,230,0,0.5) 1px, transparent 1px)',
-              backgroundSize: '40px 40px',
-            }}
-          />
-          <h3 className="text-3xl md:text-4xl font-black text-white mb-3 relative z-10">
-            Ready to hit the road?
-          </h3>
-          <p className="text-gray-400 mb-7 relative z-10">
-            Join 50,000+ happy drivers across India. Book your perfect car in under 2 minutes.
-          </p>
-          <button
-            className="btn-primary text-base px-10 py-4 relative z-10"
-          >
-            Get Started Free →
-          </button>
-        </div>
-
-        {/* Main footer grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-14 reveal delay-200">
-
-          {/* Brand column */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-5">
-              <div
-                className="w-9 h-9 rounded-lg flex items-center justify-center font-black text-sm"
-                style={{ background: '#C8E600', color: '#0A0A0A' }}
-              >
-                OC
-              </div>
-              <span className="text-2xl font-black text-white">
-                Ola <span style={{ color: '#C8E600' }}>Cars</span>
-              </span>
-            </div>
-            <p className="text-gray-500 text-sm leading-relaxed mb-6 max-w-xs">
-              Your trusted partner for premium car rental services across India. Drive with confidence, style, and value.
-            </p>
-            {/* Social icons */}
-            <div className="flex gap-3">
-              {['📘', '🐦', '📷', '💼'].map((icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-sm transition-all duration-300 hover:-translate-y-1"
-                  style={{
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid #2A2A2A',
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.background = '#C8E600';
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = '#C8E600';
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(255,255,255,0.06)';
-                    (e.currentTarget as HTMLAnchorElement).style.borderColor = '#2A2A2A';
-                  }}
-                >
-                  {icon}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-semibold text-sm uppercase tracking-widest mb-5">Quick Links</h4>
-            <ul className="space-y-3">
-              {[
-                { href: '#home', label: 'Home' },
-                { href: '#services', label: 'Services' },
-                { href: '#products', label: 'Our Fleet' },
-                { href: '#about', label: 'About Us' },
-                { href: '#contact', label: 'Contact' },
-              ].map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-gray-500 text-sm transition-all duration-200 hover:pl-1"
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#C8E600'; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = ''; }}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="text-white font-semibold text-sm uppercase tracking-widest mb-5">Services</h4>
-            <ul className="space-y-3">
-              {['Daily Rentals', 'Airport Transfers', 'Business Travel', 'Self-Drive', 'Corporate Leasing'].map((s) => (
-                <li key={s}>
-                  <a
-                    href="#services"
-                    className="text-gray-500 text-sm transition-all duration-200 hover:pl-1"
-                    onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#C8E600'; }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = ''; }}
-                  >
-                    {s}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact & App */}
-          <div>
-            <h4 className="text-white font-semibold text-sm uppercase tracking-widest mb-5">Contact Us</h4>
-            <div className="space-y-3 mb-6">
-              {[
-                { icon: '📍', text: '123 MG Road, Bangalore 560001' },
-                { icon: '📞', text: '+91 98765 43210' },
-                { icon: '✉️', text: 'support@olacars.com' },
-                { icon: '⏰', text: '24/7 Support Available' },
-              ].map((item) => (
-                <div key={item.icon} className="flex items-start gap-3">
-                  <span className="text-base">{item.icon}</span>
-                  <span className="text-gray-500 text-xs leading-relaxed">{item.text}</span>
+    <footer id="contact" className="relative bg-[#0A0A0A] overflow-hidden">
+      {/* Infinite Scrolling Ticker */}
+      <div className="bg-[#D2EE00] py-4 relative z-20 overflow-hidden">
+        <div className="flex whitespace-nowrap animate-marquee">
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="flex items-center">
+              {tickerItems.map((item, idx) => (
+                <div key={idx} className="flex items-center mx-8">
+                  <span className="text-black font-black text-sm md:text-base uppercase tracking-wider">{item}</span>
+                  <Sparkles className="w-5 h-5 text-black/40 fill-black/20 ml-16" />
                 </div>
               ))}
             </div>
+          ))}
+        </div>
+      </div>
 
-            {/* App download */}
-            <div className="flex flex-col gap-2">
-              {[
-                { icon: '📱', sub: 'Download on the', title: 'App Store' },
-                { icon: '🤖', sub: 'Get it on', title: 'Google Play' },
-              ].map((app) => (
-                <button
-                  key={app.title}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl text-left cursor-pointer transition-all duration-200 border"
-                  style={{ background: 'rgba(255,255,255,0.03)', borderColor: '#2A2A2A' }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(200,230,0,0.3)';
-                    (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-2px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.borderColor = '#2A2A2A';
-                    (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0)';
-                  }}
-                >
-                  <span className="text-xl">{app.icon}</span>
-                  <div>
-                    <small className="text-gray-500 text-xs block">{app.sub}</small>
-                    <strong className="text-white text-xs">{app.title}</strong>
-                  </div>
-                </button>
-              ))}
+      <div className="max-w-7xl 4xl:max-w-9xl 5xl:max-w-[140rem] mx-auto px-6 py-24 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-20 mb-20 reveal">
+          {footerSections.map((section) => (
+            <div key={section.title}>
+              <h4 className="text-white font-black text-xl mb-8 tracking-tight">{section.title}</h4>
+              <ul className="space-y-4">
+                {section.links.map((link) => (
+                  <li key={link}>
+                    <a
+                      href="#"
+                      className="group flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 transform hover:translate-x-2"
+                    >
+                      <div className="w-6 h-6 rounded-full bg-[#D2EE00] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                        <ChevronRight className="w-3.5 h-3.5 text-black stroke-[3.5]" />
+                      </div>
+                      <span className="text-base md:text-lg font-medium">{link}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
+          ))}
         </div>
 
-        {/* Divider */}
-        <div className="divider-lime" />
+        {/* Bottom Bar Divider */}
+        <div className="h-px w-full bg-white/10 mb-10" />
 
-        {/* Bottom bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-6">
-          <p className="text-gray-600 text-xs">© {year} Ola Cars. All rights reserved.</p>
-          <div className="flex gap-6 flex-wrap justify-center">
-            {['Privacy Policy', 'Terms of Service', 'Cookie Policy', 'Sitemap'].map((link) => (
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12 text-center md:text-left">
+            <p className="text-gray-500 text-sm font-medium">© {year} Ola Cars. All rights reserved.</p>
+            <p className="text-gray-600 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold hover:text-[#D2EE00] transition-colors cursor-help">
+              CIN: U74140DL2024PTC123456 / GST: 07AAAFO1234A1Z5
+            </p>
+          </div>
+
+          <div className="flex items-center gap-4">
+            {socialLinks.map((social) => (
               <a
-                key={link}
+                key={social.label}
                 href="#"
-                className="text-gray-600 text-xs transition-colors duration-200"
-                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = '#C8E600'; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = ''; }}
+                className="w-10 h-10 5xl:w-16 5xl:h-16 rounded-full bg-[#D2EE00] flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(210,238,0,0.5)] group"
+                title={social.label}
               >
-                {link}
+                <social.icon className="w-5 h-5 5xl:w-8 5xl:h-8 text-black transition-transform group-hover:rotate-12" />
               </a>
             ))}
           </div>
         </div>
       </div>
+
+      {/* Subtle decorative background glow */}
+      <div className="absolute bottom-0 left-0 w-full h-[600px] bg-gradient-to-t from-[#D2EE00]/5 to-transparent pointer-events-none" />
     </footer>
   );
 };

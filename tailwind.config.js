@@ -6,37 +6,54 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+      '3xl': '1920px',
+      '4xl': '2560px',
+      '5xl': '3840px',
+    },
     extend: {
+      maxWidth: {
+        '8xl': '88rem',
+        '9xl': '96rem',
+        '10xl': '104rem',
+      },
       colors: {
         // ── Brand ─────────────────────────────────────────────────────────
         lime: {
-          DEFAULT: '#C8E600',
-          dark: '#a8c100',
-          light: '#d8f200',
+          DEFAULT: '#D2EE00',
+          dark: '#b8cc00',
+          light: '#e1ff00',
         },
         brand: {
           black: '#0A0A0A',
+          dark: '#111111',
+          accent: '#D2EE00',
         },
         // ── Surfaces ──────────────────────────────────────────────────────
         dark: {
-          bg: '#111111',
-          card: '#1C1C1C',
-          border: '#2A2A2A',
+          bg: '#0A0A0A',
+          card: '#151515',
+          border: '#222222',
         },
         light: {
-          bg: '#F5F7FA',
-          border: '#E5E7EB',
+          bg: '#FFFFFF',
+          border: '#F0F0F0',
         },
         // ── Semantic ──────────────────────────────────────────────────────
-        alert: '#E74C3C',
-        warning: '#E67E22',
-        muted: '#6B7280',
+        alert: '#FF3B30',
+        warning: '#FF9500',
+        muted: '#8E8E93',
 
         // Keep legacy aliases so existing classes still compile
         primary: {
-          DEFAULT: '#C8E600',
-          light: '#d8f200',
-          dark: '#a8c100',
+          DEFAULT: '#D2EE00',
+          light: '#e1ff00',
+          dark: '#b8cc00',
         },
         secondary: {
           DEFAULT: '#1C1C1C',
@@ -66,6 +83,7 @@ export default {
         'revealCard': 'revealCard 0.7s cubic-bezier(0.16,1,0.3,1) forwards',
         'shimmer': 'shimmer 2.5s linear infinite',
         'gradientShift': 'gradientShift 6s ease infinite',
+        'marquee': 'marquee 25s linear infinite',
       },
 
       keyframes: {
@@ -124,6 +142,10 @@ export default {
         gradientShift: {
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
       },
 
