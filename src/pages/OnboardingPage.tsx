@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, RefreshCw, Loader2 } from 'lucide-react';
+import { LogOut, RefreshCw, Loader2, FileCheck, ArrowRight } from 'lucide-react';
 import OnboardingStepper from '../components/onboarding/OnboardingStepper';
 import PersonalInfoForm from '../components/onboarding/PersonalInfoForm';
 import DocumentUploadForm from '../components/onboarding/DocumentUploadForm';
 import StatusWaiting from '../components/onboarding/StatusWaiting';
-import { updateDriverProfile, uploadDriverDocument, getDriverMe } from '../services/driverService';
+import { updateDriverProfile, uploadDriverDocument, getDriverMe, progressDriver } from '../services/driverService';
 import type { Driver } from '../types/driver';
 
 const OnboardingPage = () => {
@@ -36,9 +36,29 @@ const OnboardingPage = () => {
             // Re-fetch to get updated data
             const updated = await getDriverMe();
             setLocalDriver(updated);
+            
+            // Switch to docs tab for better flow
+            setActiveTab('docs');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         } catch (err: any) {
             setError(err.response?.data?.message || 'Failed to save. Please try again.');
             throw err;
+        }
+    };
+
+    const handleSubmitApplication = async () => {
+        if (!localDriver) return;
+        setRefreshing(true);
+        setError('');
+        try {
+            await progressDriver(localDriver._id, 'PENDING REVIEW', { notes: 'Self-submitted by driver' });
+            await refreshProfile();
+            const updated = await getDriverMe();
+            setLocalDriver(updated);
+        } catch (err: any) {
+            setError(err.response?.data?.message || 'Submission failed. Please check if all required fields and documents are provided.');
+        } finally {
+            setRefreshing(false);
         }
     };
 
@@ -134,11 +154,27 @@ const OnboardingPage = () => {
                             <DocumentUploadForm driver={localDriver} onUpload={handleUpload} />
                         )}
 
-                        {/* Submit hint */}
-                        <div className="bg-dark-card border border-dark-border rounded-2xl p-5 text-center">
-                            <p className="text-xs text-gray-500">
-                                Once you've filled in your details and uploaded all required documents, our team will be notified to review your application.
-                            </p>
+                        {/* Submit Action */}
+                        <div className="bg-dark-card border border-dark-border rounded-2xl p-6 space-y-4">
+                            <div className="flex items-start gap-3">
+                                <div className="p-2 bg-lime/10 rounded-lg shrink-0">
+                                    <FileCheck size={18} className="text-lime" />
+                                </div>
+                                <div className="space-y-1">
+                                    <h4 className="text-sm font-bold text-white">Ready to submit?</h4>
+                                    <p className="text-[11px] text-gray-500 leading-relaxed">
+                                        Please ensure all your personal details are correct and all required documents are uploaded clearly.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <button 
+                                onClick={handleSubmitApplication}
+                                disabled={refreshing}
+                                className="w-full py-4 bg-lime text-brand-black font-black text-sm uppercase tracking-widest rounded-2xl flex items-center justify-center gap-3 hover:shadow-[0_8px_32px_rgba(210,238,0,0.3)] transition-all active:scale-[0.98] disabled:opacity-50"
+                            >
+                                {refreshing ? <Loader2 size={20} className="animate-spin" /> : <>Submit Application <ArrowRight size={18} /></>}
+                            </button>
                         </div>
                     </>
                 ) : (

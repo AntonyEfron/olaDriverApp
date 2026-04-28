@@ -39,3 +39,8 @@ export const uploadDriverDocument = async (id: string, formData: FormData) => {
     });
     return data;
 };
+
+export const progressDriver = async (id: string, targetStatus: string, data?: any): Promise<Driver> => {
+    const response = await api.put(`/driver/${id}/progress`, { targetStatus, ...data });
+    return response.data.data;
+};

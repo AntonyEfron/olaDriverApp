@@ -22,6 +22,7 @@ const PersonalInfoForm = ({ driver, onSave }: Props) => {
         emergencyRelationship: driver.emergencyContact?.relationship || '',
         licenseNumber: driver.drivingLicense?.licenseNumber || '',
         licenseCountry: driver.drivingLicense?.licenseCountry || '',
+        licenseExpiry: driver.drivingLicense?.expiryDate?.split('T')[0] || '',
     });
     const [saving, setSaving] = useState(false);
     const [saved, setSaved] = useState(false);
@@ -56,6 +57,7 @@ const PersonalInfoForm = ({ driver, onSave }: Props) => {
                 drivingLicense: {
                     licenseNumber: form.licenseNumber,
                     licenseCountry: form.licenseCountry,
+                    expiryDate: form.licenseExpiry || undefined,
                 },
             });
             setSaved(true);
@@ -131,6 +133,10 @@ const PersonalInfoForm = ({ driver, onSave }: Props) => {
                     <div>
                         <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1.5">License Country</label>
                         <input name="licenseCountry" value={form.licenseCountry} onChange={handleChange} placeholder="e.g. South Africa" className={inputClass} />
+                    </div>
+                    <div className="sm:col-span-2">
+                        <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1.5">License Expiry Date *</label>
+                        <input name="licenseExpiry" type="date" value={form.licenseExpiry} onChange={handleChange} required className={inputClass} />
                     </div>
                 </div>
             </div>
