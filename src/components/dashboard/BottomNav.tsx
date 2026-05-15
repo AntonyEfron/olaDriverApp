@@ -1,4 +1,4 @@
-import { Home, Car, CreditCard, UserCircle } from 'lucide-react';
+import { Home, Car, CreditCard, UserCircle, LifeBuoy } from 'lucide-react';
 
 interface Props {
     active: string;
@@ -9,8 +9,10 @@ const TABS = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'vehicle', label: 'Vehicle', icon: Car },
     { id: 'payments', label: 'Payments', icon: CreditCard },
+    { id: 'helpdesk', label: 'Help Desk', icon: LifeBuoy },
     { id: 'profile', label: 'Profile', icon: UserCircle },
 ];
+
 
 const BottomNav = ({ active, onChange }: Props) => {
     return (

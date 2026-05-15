@@ -4,6 +4,7 @@ import Services from '../components/Services';
 import Products from '../components/Products';
 import Footer from '../components/Footer';
 import ChatBot from '../components/ChatBot';
+import ComplaintPortal from '../components/ComplaintPortal';
 import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
@@ -20,6 +21,7 @@ const LandingPage = () => {
                 <Banner />
                 <Services />
                 <Products />
+                <ComplaintPortal />
             </main>
 
             <Footer />

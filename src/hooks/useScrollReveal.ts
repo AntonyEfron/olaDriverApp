@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 /**
  * Attaches an IntersectionObserver to every element with
@@ -6,6 +7,8 @@ import { useEffect } from 'react';
  * Adds `.visible` when the element enters the viewport.
  */
 export const useScrollReveal = () => {
+    const location = useLocation();
+
     useEffect(() => {
         const targets = document.querySelectorAll<HTMLElement>(
             '.reveal, .reveal-left, .reveal-right, .reveal-scale'
@@ -26,5 +29,5 @@ export const useScrollReveal = () => {
         targets.forEach((el) => observer.observe(el));
 
         return () => observer.disconnect();
-    }, []);
+    }, [location]);
 };

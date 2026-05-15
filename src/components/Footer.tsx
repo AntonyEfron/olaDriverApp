@@ -61,7 +61,7 @@ const Footer = () => {
                 {section.links.map((link) => (
                   <li key={link}>
                     <a
-                      href="#"
+                      href={link === 'Support' ? '#support' : '#'}
                       className="group flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 transform hover:translate-x-2"
                     >
                       <div className="w-6 h-6 rounded-full bg-[#D2EE00] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">

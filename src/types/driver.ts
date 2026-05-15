@@ -215,6 +215,11 @@ export interface Vehicle {
     legalDocs?: VehicleLegalDocs;
     insuranceDetails?: VehicleInsuranceDetails;
     maintenanceDetails?: VehicleMaintenanceDetails;
+    gpsConfiguration?: {
+        isActivated: boolean;
+        geofenceZone?: string;
+        speedLimitThreshold?: number;
+    };
     purchaseDetails?: {
         purchaseReceipt?: string;
         branch?: string | Branch;

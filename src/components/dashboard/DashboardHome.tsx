@@ -1,4 +1,4 @@
-import { Gauge, MapPin, Star, Zap, AlertTriangle, CreditCard, TrendingUp, Shield } from 'lucide-react';
+import { Gauge, MapPin, Star, Zap, AlertTriangle, CreditCard, TrendingUp, Shield, Car } from 'lucide-react';
 import type { Driver, Invoice, Vehicle } from '../../types/driver';
 
 interface Props {
@@ -8,9 +8,10 @@ interface Props {
 }
 
 const DashboardHome = ({ driver, vehicle, invoices }: Props) => {
+    const safeInvoices = Array.isArray(invoices) ? invoices : [];
     const performance = driver.performance;
-    const pendingInvoices = invoices.filter(i => i.status === 'PENDING' || i.status === 'PARTIAL' || i.status === 'OVERDUE');
-    const overdueInvoices = invoices.filter(i => i.status !== 'PAID' && i.dueDate && new Date(i.dueDate) < new Date());
+    const pendingInvoices = safeInvoices.filter(i => i.status === 'PENDING' || i.status === 'PARTIAL' || i.status === 'OVERDUE');
+    const overdueInvoices = safeInvoices.filter(i => i.status !== 'PAID' && i.dueDate && new Date(i.dueDate) < new Date());
     const totalOutstanding = pendingInvoices.reduce((acc, i) => acc + (i.balance || 0), 0);
     const overdueAmount = overdueInvoices.reduce((acc, i) => acc + (i.balance || 0), 0);
 
@@ -35,6 +36,7 @@ const DashboardHome = ({ driver, vehicle, invoices }: Props) => {
     return (
         <div className="space-y-6">
             {/* Welcome */}
+            {/* Welcome */}
             <div className="bg-gradient-to-br from-lime/10 to-transparent border border-lime/20 rounded-3xl p-6 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-lime/10 rounded-full blur-2xl -mr-10 -mt-10" />
                 <div className="relative z-10">
@@ -45,6 +47,28 @@ const DashboardHome = ({ driver, vehicle, invoices }: Props) => {
                     </p>
                 </div>
             </div>
+
+            {/* Vehicle Quick Info */}
+            {vehicle && (
+                <div className="bg-dark-card border border-dark-border rounded-2xl p-5 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-xl bg-lime/10 flex items-center justify-center text-lime">
+                            <Car size={24} />
+                        </div>
+                        <div>
+                            <p className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-0.5">Assigned Vehicle</p>
+                            <h3 className="text-sm font-bold text-white">{vehicle.legalDocs?.registrationNumber || 'No Plate'}</h3>
+                            <p className="text-[10px] text-gray-400">{vehicle.basicDetails?.make} {vehicle.basicDetails?.model} • {vehicle.basicDetails?.year}</p>
+                        </div>
+                    </div>
+                    <div className="text-right">
+                        <div className="inline-block px-2 py-0.5 bg-lime/10 rounded-md text-[9px] font-black text-lime uppercase tracking-wider mb-1">
+                            {vehicle.status}
+                        </div>
+                        <p className="text-[10px] text-gray-500 font-bold">{vehicle.basicDetails?.fuelType} • {vehicle.basicDetails?.transmission}</p>
+                    </div>
+                </div>
+            )}
 
             {/* Alerts */}
             {overdueAmount > 0 && (

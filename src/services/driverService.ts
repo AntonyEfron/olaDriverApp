@@ -7,8 +7,8 @@ export const requestOTP = async (email: string) => {
     return data;
 };
 
-export const driverLogin = async (email: string, otp: string): Promise<LoginResponse> => {
-    const { data } = await api.post('/driver-auth/login', { email, otp });
+export const driverLogin = async (email: string, phone: string): Promise<LoginResponse> => {
+    const { data } = await api.post('/driver-auth/login', { email, phone });
     return data;
 };
 
