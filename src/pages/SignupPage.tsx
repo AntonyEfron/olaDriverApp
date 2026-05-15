@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { User, Mail, Phone, Lock, Eye, EyeOff, ArrowRight, Loader2, CheckCircle } from 'lucide-react';
+import { User, Mail, Phone, ArrowRight, Loader2, CheckCircle } from 'lucide-react';
 
 const SignupPage = () => {
     const { signup } = useAuth();

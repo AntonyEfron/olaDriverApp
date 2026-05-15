@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Mail, KeyRound, ArrowRight, Loader2, ShieldCheck, RefreshCw } from 'lucide-react';
+import { Mail, ArrowRight, Loader2 } from 'lucide-react';
 
 const LoginPage = () => {
     const { login } = useAuth();
