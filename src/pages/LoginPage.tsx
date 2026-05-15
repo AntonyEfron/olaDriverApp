@@ -7,6 +7,7 @@ const LoginPage = () => {
     const { login } = useAuth();
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -15,11 +16,10 @@ const LoginPage = () => {
         setError('');
         setLoading(true);
         try {
-            // [TEST BYPASS] Automatically verify any email for testing
-            await login(email, '000000'); 
+            await login(email, phone); 
             navigate('/dashboard', { replace: true });
         } catch (err: any) {
-            setError(err.response?.data?.message || 'Login failed. Please check your email.');
+            setError(err.response?.data?.message || 'Login failed. Please check your email and mobile number.');
         } finally {
             setLoading(false);
         }
@@ -39,8 +39,8 @@ const LoginPage = () => {
                 </div>
 
                 <div className="bg-dark-card border border-dark-border rounded-3xl p-8 shadow-2xl">
-                    <h2 className="text-2xl font-black text-white mb-1 tracking-tight">Welcome Back</h2>
-                    <p className="text-sm text-gray-500 mb-8">Sign in to your driver account (Test Mode)</p>
+                    <h2 className="text-2xl font-black text-white mb-1 tracking-tight">Driver Sign In</h2>
+                    <p className="text-sm text-gray-500 mb-8">Access your vehicle and earnings dashboard</p>
 
                     {error && (
                         <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm font-medium">
@@ -59,7 +59,22 @@ const LoginPage = () => {
                                     onChange={e => setEmail(e.target.value)}
                                     required
                                     placeholder="driver@example.com"
-                                    className="w-full pl-12 pr-4 py-3.5 bg-brand-black border-2 border-dark-border rounded-xl text-white placeholder-gray-600 focus:border-lime focus:outline-none focus:ring-2 focus:ring-lime/20 transition-all text-sm"
+                                    className="w-full pl-12 pr-4 py-3.5 bg-brand-black border-2 border-dark-border rounded-xl text-white placeholder-gray-600 focus:border-lime focus:outline-none focus:ring-2 focus:ring-lime/20 transition-all text-sm font-bold"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Mobile Number</label>
+                            <div className="relative">
+                                <KeyRound size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
+                                <input
+                                    type="tel"
+                                    value={phone}
+                                    onChange={e => setPhone(e.target.value)}
+                                    required
+                                    placeholder="077XXXXXXXX"
+                                    className="w-full pl-12 pr-4 py-3.5 bg-brand-black border-2 border-dark-border rounded-xl text-white placeholder-gray-600 focus:border-lime focus:outline-none focus:ring-2 focus:ring-lime/20 transition-all text-sm font-bold"
                                 />
                             </div>
                         </div>
@@ -69,7 +84,7 @@ const LoginPage = () => {
                             disabled={loading}
                             className="w-full py-4 bg-lime text-brand-black font-black text-sm uppercase tracking-widest rounded-2xl flex items-center justify-center gap-3 hover:shadow-[0_8px_32px_rgba(210,238,0,0.3)] transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                            {loading ? <Loader2 size={20} className="animate-spin" /> : <><span>Login</span><ArrowRight size={18} /></>}
+                            {loading ? <Loader2 size={20} className="animate-spin" /> : <><span>Sign In</span><ArrowRight size={18} /></>}
                         </button>
                     </form>
 

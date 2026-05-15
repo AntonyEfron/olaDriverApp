@@ -67,13 +67,31 @@ const VehicleDetails = ({ vehicle }: Props) => {
             {/* Specifications */}
             <div className="bg-dark-card border border-dark-border rounded-2xl p-6">
                 <h3 className="text-xs font-black text-gray-500 uppercase tracking-wider mb-3">Specifications</h3>
+                <InfoRow icon={MapPin} label="Branch" value={(vehicle.purchaseDetails?.branch as any)?.name} />
+                <InfoRow icon={Hash} label="Fleet Number" value={b?.fleetNumber} />
                 <InfoRow icon={Palette} label="Colour" value={b?.colour} />
                 <InfoRow icon={Settings} label="Engine" value={b?.engineCapacity ? `${b.engineCapacity}cc` : undefined} />
                 <InfoRow icon={Hash} label="VIN" value={b?.vin} />
                 <InfoRow icon={Gauge} label="Odometer" value={odometer ? `${odometer.toLocaleString()} km` : undefined} />
                 <InfoRow icon={Fuel} label="Fuel Type" value={b?.fuelType} />
                 <InfoRow icon={Car} label="Body Type" value={b?.bodyType} />
+            </div>
+
+            {/* Legal & Compliance */}
+            <div className="bg-dark-card border border-dark-border rounded-2xl p-6">
+                <h3 className="text-xs font-black text-gray-500 uppercase tracking-wider mb-3">Legal & Compliance</h3>
+                <InfoRow icon={Hash} label="Registration No." value={l?.registrationNumber} />
+                <InfoRow icon={Calendar} label="Reg. Expiry" value={l?.registrationExpiry ? new Date(l.registrationExpiry).toLocaleDateString() : undefined} />
+                <InfoRow icon={Calendar} label="Road Tax Expiry" value={l?.roadTaxExpiry ? new Date(l.roadTaxExpiry).toLocaleDateString() : undefined} />
+                <InfoRow icon={Shield} label="Roadworthiness Expiry" value={l?.roadworthinessExpiry ? new Date(l.roadworthinessExpiry).toLocaleDateString() : undefined} />
+            </div>
+
+            {/* GPS & Security */}
+            <div className="bg-dark-card border border-dark-border rounded-2xl p-6">
+                <h3 className="text-xs font-black text-gray-500 uppercase tracking-wider mb-3">GPS & Security</h3>
                 <InfoRow icon={MapPin} label="GPS Serial" value={b?.gpsSerialNumber} />
+                <InfoRow icon={Shield} label="Geofence" value={vehicle.gpsConfiguration?.geofenceZone || 'Global'} />
+                <InfoRow icon={Gauge} label="Speed Limit" value={vehicle.gpsConfiguration?.speedLimitThreshold ? `${vehicle.gpsConfiguration.speedLimitThreshold} km/h` : 'No Limit'} />
             </div>
 
             {/* Rental Info */}

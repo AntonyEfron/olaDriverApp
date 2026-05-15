@@ -7,6 +7,7 @@ import DashboardHome from '../components/dashboard/DashboardHome';
 import VehicleDetails from '../components/dashboard/VehicleDetails';
 import PaymentsTab from '../components/dashboard/PaymentsTab';
 import ProfileTab from '../components/dashboard/ProfileTab';
+import HelpDeskTab from '../components/dashboard/HelpDeskTab';
 import { getDriverMe } from '../services/driverService';
 import { getVehicleById } from '../services/vehicleService';
 import { getInvoicesByDriver } from '../services/invoiceService';
@@ -118,6 +119,7 @@ const DashboardPage = () => {
                 {activeTab === 'home' && <DashboardHome driver={localDriver} vehicle={vehicle} invoices={invoices} />}
                 {activeTab === 'vehicle' && <VehicleDetails vehicle={vehicle} />}
                 {activeTab === 'payments' && <PaymentsTab invoices={invoices} />}
+                {activeTab === 'helpdesk' && <HelpDeskTab driver={localDriver} vehicle={vehicle} />}
                 {activeTab === 'profile' && <ProfileTab driver={localDriver} onLogout={handleLogout} />}
             </main>
 

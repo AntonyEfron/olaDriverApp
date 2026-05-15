@@ -9,7 +9,7 @@ interface AuthContextType {
     isAuthenticated: boolean;
     isLoading: boolean;
     requestOTP: (email: string) => Promise<void>;
-    login: (email: string, otp: string) => Promise<void>;
+    login: (email: string, phone: string) => Promise<void>;
     signup: (data: { fullName: string; email: string; phone: string }) => Promise<void>;
     logout: () => void;
     refreshProfile: () => Promise<void>;
@@ -59,8 +59,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         await apiRequestOTP(email);
     };
 
-    const login = async (email: string, otp: string) => {
-        const res = await driverLogin(email, otp);
+    const login = async (email: string, phone: string) => {
+        const res = await driverLogin(email, phone);
         // Store tokens
         localStorage.setItem('token', res.accessToken);
         localStorage.setItem('refreshToken', res.refreshToken);
