@@ -70,6 +70,10 @@ const AccidentReportForm = ({ onSuccess, driver, vehicle }: { onSuccess: () => v
             setError('Please fill in all required fields.');
             return;
         }
+        if (images.length === 0) {
+            setError('Please provide at least 1 image of the accident scene.');
+            return;
+        }
         setSubmitting(true);
         try {
             await submitAccidentReport({ ...form, images });

@@ -39,7 +39,7 @@ export const submitAccidentReport = async (payload: SubmitAccidentReportPayload)
     formData.append('description', payload.description);
     payload.images.forEach(img => formData.append('images', img));
 
-    const { data } = await api.post('/api/accident-reports/submit', formData, {
+    const { data } = await api.post('/accident-reports/submit', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
     });
     return data.data;
@@ -47,6 +47,6 @@ export const submitAccidentReport = async (payload: SubmitAccidentReportPayload)
 
 // Driver: Get own accident reports
 export const getMyAccidentReports = async (): Promise<AccidentReport[]> => {
-    const { data } = await api.get('/api/accident-reports/my-reports');
+    const { data } = await api.get('/accident-reports/my-reports');
     return data.data || [];
 };
