@@ -3,7 +3,6 @@ import Banner from '../components/Banner';
 import Services from '../components/Services';
 import Products from '../components/Products';
 import Footer from '../components/Footer';
-import ChatBot from '../components/ChatBot';
 import ComplaintPortal from '../components/ComplaintPortal';
 import { useNavigate } from 'react-router-dom';
 
@@ -26,7 +25,7 @@ const LandingPage = () => {
 
             <Footer />
 
-            <ChatBot />
+            {/* External widget handles chatbot on home screen. In-app ChatBot removed here. */}
         </div>
     );
 };
