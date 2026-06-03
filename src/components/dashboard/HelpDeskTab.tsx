@@ -1,14 +1,12 @@
 import { useState, useRef } from 'react';
 import {
-    ShieldAlert, MessageSquare, HelpCircle, ChevronRight,
+    ShieldAlert, MessageSquare, ChevronRight,
     Camera, X, MapPin, Phone, Mail, Car, AlertTriangle,
-    CheckCircle2, Loader2, Upload, FileText, History, Eye, ChevronDown
+    CheckCircle2, Loader2, Upload, FileText, History, Eye, 
 } from 'lucide-react';
 import { submitAccidentReport, getMyAccidentReports } from '../../services/accidentService';
 import type { AccidentReport } from '../../services/accidentService';
-import { useAuth } from '../../context/AuthContext';
 import ComplaintPortal from '../ComplaintPortal';
-import api from '../../api';
 import type { Driver, Vehicle } from '../../types/driver';
 
 // ─── Status Badge ─────────────────────────────────────────────────────────────

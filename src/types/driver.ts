@@ -6,6 +6,7 @@ export interface PersonalInfo {
     nationality?: string;
     email: string;
     phone: string;
+    licenseNumber?: string;
     whatsappNumber?: string;
     photograph?: string;
 }
@@ -173,6 +174,7 @@ export interface VehicleBasicDetails {
     transmission?: string;
     engineCapacity?: number;
     colour?: string;
+    fleetNumber?: string;
     seats?: number;
     vin?: string;
     engineNumber?: string;

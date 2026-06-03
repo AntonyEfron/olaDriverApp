@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Mail, ArrowRight, Loader2 } from 'lucide-react';
+import { Mail, ArrowRight, Loader2, Phone } from 'lucide-react';
 
 const LoginPage = () => {
     const { login } = useAuth();
@@ -67,7 +67,7 @@ const LoginPage = () => {
                         <div>
                             <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Mobile Number</label>
                             <div className="relative">
-                                <KeyRound size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
+                                <Phone size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
                                 <input
                                     type="tel"
                                     value={phone}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { 
     AlertCircle, HelpCircle, ChevronRight, Send, User, Car, Phone, 
-    FileText, MapPin, Mail, Tag, History, CheckCircle2, X, Clock, 
+    FileText, MapPin, Mail, Tag, History, CheckCircle2,  Clock, 
     MessageSquare, AlertTriangle, Loader2, Shield
 } from 'lucide-react';
 import api from '../api';
