@@ -89,7 +89,7 @@ const LoginPage = () => {
                     </form>
 
                     <div className="mt-8 pt-6 border-t border-dark-border text-center">
-                        <p className="text-sm text-gray-500">Don't have an account? <button type="button" onClick={() => navigate('/signup')} className="text-lime font-bold hover:underline">Sign Up</button></p>
+                        <p className="text-xs text-gray-500">Authorized Driver Portal &bull; Panama Operations</p>
                     </div>
                 </div>
             </div>

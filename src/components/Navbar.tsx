@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react';
 import { ChevronRight, Menu, X } from 'lucide-react';
 
 interface NavbarProps {
-  onLoginClick?: () => void;
   onSignupClick?: () => void;
 }
 
-const Navbar = ({ onLoginClick, onSignupClick }: NavbarProps) => {
+const Navbar = ({ onSignupClick }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState('#home');
@@ -45,17 +44,17 @@ const Navbar = ({ onLoginClick, onSignupClick }: NavbarProps) => {
 
   const navLinks = [
     { href: '#features', label: 'Features' },
-    { href: '#pricing', label: 'Pricing' },
-    { href: '#about', label: 'About' },
+    { href: '#pricing', label: 'Fleet' },
+    { href: '#about', label: 'Categories' },
     { href: '#contact', label: 'Contact' },
   ];
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-500 py-4 px-4 sm:px-6 md:px-12`}
+      className={`fixed top-0 w-full z-50 transition-all duration-500 py-3 sm:py-4 px-3 sm:px-6 md:px-12`}
     >
-      <div className={`mx-auto flex justify-between items-center transition-all duration-500 max-w-7xl 2xl:max-w-8xl 3xl:max-w-9xl 4xl:max-w-10xl 5xl:max-w-[120rem] ${
-        scrolled ? 'bg-black/40 backdrop-blur-md rounded-2xl py-3 px-6' : 'py-2 px-2'
+      <div className={`mx-auto flex justify-between items-center transition-all duration-500 w-full ${
+        scrolled ? 'bg-black/75 backdrop-blur-md rounded-2xl py-2.5 px-4 sm:px-6 border border-white/10' : 'py-2 px-2'
       }`}>
         
         {/* Logo */}
@@ -63,7 +62,7 @@ const Navbar = ({ onLoginClick, onSignupClick }: NavbarProps) => {
           <div className="w-8 h-8 rounded-full bg-lime flex items-center justify-center p-1.5 transition-transform duration-300 group-hover:rotate-12">
              <div className="w-full h-full rounded-full border-2 border-black" />
           </div>
-          <span className="text-2xl font-black text-white tracking-tighter">
+          <span className="text-xl sm:text-2xl font-black text-white tracking-tighter">
             OLA
           </span>
         </a>
@@ -77,7 +76,7 @@ const Navbar = ({ onLoginClick, onSignupClick }: NavbarProps) => {
               onClick={() => setActiveLink(link.href)}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeLink === link.href
-                  ? 'bg-lime text-black shadow-[0_0_20px_rgba(210,238,0,0.3)]' 
+                  ? 'bg-lime text-black shadow-[0_0_20px_rgba(210,238,0,0.3)] font-bold' 
                   : 'text-gray-300 hover:text-white'
               }`}
             >
@@ -86,30 +85,23 @@ const Navbar = ({ onLoginClick, onSignupClick }: NavbarProps) => {
           ))}
         </div>
 
-        {/* Action Buttons */}
-        <div className="hidden md:flex items-center gap-8">
-          <button 
-            onClick={onLoginClick}
-            className="text-white text-sm font-semibold hover:text-lime transition-colors"
-          >
-            Login
-          </button>
-          
+        {/* Action Button */}
+        <div className="hidden md:flex items-center">
           <button
             onClick={onSignupClick}
-            className="group flex items-center gap-2 bg-lime hover:bg-lime-light text-black px-6 py-3 rounded-full font-bold text-sm transition-all duration-300 transform hover:-translate-y-0.5"
+            className="group flex items-center gap-2 bg-lime hover:bg-lime-light text-black px-6 py-2.5 rounded-full font-black text-xs uppercase tracking-wider transition-all duration-300 transform hover:-translate-y-0.5 shadow-[0_8px_20px_rgba(210,238,0,0.25)] cursor-pointer"
           >
-            Book Now
+            <span>Book Now</span>
             <ChevronRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </button>
         </div>
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-white p-2 rounded-xl hover:bg-white/10 transition-colors"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          {isMenuOpen ? <X /> : <Menu />}
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
@@ -124,22 +116,16 @@ const Navbar = ({ onLoginClick, onSignupClick }: NavbarProps) => {
             <a
               key={link.href}
               href={link.href}
-              className="text-3xl font-bold text-white hover:text-lime"
+              className="text-2xl font-bold text-white hover:text-lime transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               {link.label}
             </a>
           ))}
-          <div className="flex flex-col gap-4 mt-8 w-full px-12">
-            <button
-               onClick={() => { onLoginClick?.(); setIsMenuOpen(false); }}
-               className="w-full py-4 rounded-xl border border-white/10 text-white font-bold"
-            >
-              Login
-            </button>
+          <div className="flex flex-col gap-4 mt-6 w-full max-w-xs px-6">
             <button
                onClick={() => { onSignupClick?.(); setIsMenuOpen(false); }}
-               className="w-full py-4 rounded-xl bg-lime text-black font-bold"
+               className="w-full py-3.5 rounded-xl bg-lime text-black font-black uppercase tracking-wider text-xs shadow-lg cursor-pointer"
             >
               Book Now
             </button>

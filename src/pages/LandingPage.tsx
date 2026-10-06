@@ -1,20 +1,26 @@
+import { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Banner from '../components/Banner';
 import Services from '../components/Services';
 import Products from '../components/Products';
 import Footer from '../components/Footer';
 import ComplaintPortal from '../components/ComplaintPortal';
-import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
-    const navigate = useNavigate();
+    useEffect(() => {
+        document.title = 'Ola Cars Panama | Premium Car Rentals & Fleet';
+    }, []);
 
-    const handleLoginClick = () => { navigate('/login'); };
-    const handleSignupClick = () => { navigate('/signup'); };
+    const handleSignupClick = () => {
+        const el = document.getElementById('pricing');
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <div className="min-h-screen flex flex-col" style={{ background: '#111111' }}>
-            <Navbar onLoginClick={handleLoginClick} onSignupClick={handleSignupClick} />
+            <Navbar onSignupClick={handleSignupClick} />
 
             <main className="flex-1">
                 <Banner />

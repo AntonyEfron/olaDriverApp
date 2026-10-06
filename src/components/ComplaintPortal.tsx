@@ -63,6 +63,7 @@ const ComplaintPortal = () => {
     const [formData, setFormData] = useState({
         idValue: driver?.personalInfo?.licenseNumber || '',
         branchId: typeof driver?.branch === 'object' ? driver.branch?._id : (driver?.branch || ''),
+        branchArea: typeof driver?.branch === 'object' ? driver.branch?.name : 'Panama City - Tocumen Intl Airport (PTY)',
         message: '',
         name: driver?.personalInfo?.fullName || '',
         email: driver?.personalInfo?.email || '',
@@ -77,8 +78,14 @@ const ComplaintPortal = () => {
         } else if (driver) {
             // Update branchId if driver is loaded
             const bId = typeof driver.branch === 'object' ? driver.branch?._id : driver.branch;
+            const bName = typeof driver.branch === 'object' ? driver.branch?.name : undefined;
             if (bId) {
-                setFormData(prev => ({ ...prev, branchId: bId, idValue: driver.personalInfo?.licenseNumber || '' }));
+                setFormData(prev => ({ 
+                    ...prev, 
+                    branchId: bId, 
+                    branchArea: bName || prev.branchArea,
+                    idValue: driver.personalInfo?.licenseNumber || '' 
+                }));
             }
         }
     }, [isAuthenticated, driver]);
@@ -86,8 +93,13 @@ const ComplaintPortal = () => {
     const fetchBranches = useCallback(async () => {
         try {
             const response = await api.get('/branch/public/list');
-            if (response.data.success) {
+            if (response.data.success && response.data.data?.length > 0) {
                 setBranches(response.data.data);
+                setFormData(prev => ({
+                    ...prev,
+                    branchId: prev.branchId || response.data.data[0]._id,
+                    branchArea: prev.branchArea || response.data.data[0].name
+                }));
             }
         } catch (error) {
             console.error('Error fetching branches:', error);
@@ -126,25 +138,33 @@ const ComplaintPortal = () => {
             const isEnquiry = view === 'enquiry';
             
             // For drivers, we ensure branchId and idValue are correct from the driver object if not set
-            const branchId = formData.branchId || (typeof driver?.branch === 'object' ? driver.branch?._id : driver?.branch);
+            const matchedBranch = branches.find(b => 
+                b.name.toLowerCase() === (formData.branchArea || '').toLowerCase() ||
+                b._id === formData.branchId
+            );
+            const branchId = matchedBranch?._id || formData.branchId || (typeof driver?.branch === 'object' ? driver.branch?._id : driver?.branch) || (branches.length > 0 ? branches[0]._id : undefined);
             const idValue = isEnquiry ? formData.mobile : (formData.idValue || driver?.personalInfo?.licenseNumber || formData.mobile);
 
-            const payload = {
+            const payload: any = {
                 type: isEnquiry ? 'ENQUIRY' : 'COMPLAINT',
                 name: formData.name || driver?.personalInfo?.fullName,
                 mobile: isEnquiry ? formData.mobile : idValue,
                 email: formData.email || driver?.personalInfo?.email,
                 category: isEnquiry ? formData.category : 'COMPLAINT',
-                branchId: branchId,
-                message: formData.message,
+                branchId: branchId || (branches[0]?._id),
+                branchArea: formData.branchArea,
+                message: formData.branchArea 
+                    ? `[Service Area: ${formData.branchArea}]\n${formData.message}`
+                    : formData.message,
                 ...(!isEnquiry && {
                     identificationType: 'LICENSE',
                     identificationValue: idValue
                 })
             };
 
-            if (!payload.branchId) {
-                throw new Error('Please select a branch or ensure your profile is complete.');
+            // If branchId is still missing, fallback to first available branch or default identifier
+            if (!payload.branchId && branches.length > 0) {
+                payload.branchId = branches[0]._id;
             }
 
             await api.post('/enquiries/register', payload);
@@ -171,7 +191,7 @@ const ComplaintPortal = () => {
     };
 
     return (
-        <section className={`relative ${isAuthenticated ? 'py-4 bg-transparent' : 'py-24 bg-[#0A0A0A] overflow-hidden'}`} id={isAuthenticated ? undefined : 'support'}>
+        <section className={`relative ${isAuthenticated ? 'py-4 bg-transparent' : 'py-14 sm:py-24 bg-[#0A0A0A] overflow-hidden'}`} id={isAuthenticated ? undefined : 'support'}>
             {!isAuthenticated && (
                 <>
                     <div className="absolute top-0 right-0 w-96 h-96 bg-lime/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
@@ -187,17 +207,17 @@ const ComplaintPortal = () => {
 
             <div className="max-w-4xl mx-auto px-4 relative z-10">
                 {!isAuthenticated && (
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight uppercase">
+                    <div className="text-center mb-8 sm:mb-16">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-2 sm:mb-4 tracking-tight uppercase">
                             Connect <span className="text-lime">With Us</span>
                         </h2>
-                        <p className="text-gray-400 text-lg max-w-2xl mx-auto font-medium">
+                        <p className="text-gray-400 text-xs sm:text-base md:text-lg max-w-2xl mx-auto font-medium">
                             Have questions about our fleet or leasing options? Send us a message.
                         </p>
                     </div>
                 )}
 
-                <div className="bg-dark-card border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl">
+                <div className="bg-dark-card border border-white/10 rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-2xl">
                     {/* Navigation Tabs - Only show if authenticated */}
                     {isAuthenticated && (
                         <div className="flex border-b border-white/10 p-2 gap-2">
@@ -231,7 +251,7 @@ const ComplaintPortal = () => {
                         </div>
                     )}
 
-                    <div className="p-6 md:p-10">
+                    <div className="p-4 sm:p-8 md:p-10">
                         {view === 'history' ? (
                             <div className="space-y-6">
                                 {fetchingHistory ? (
@@ -286,12 +306,12 @@ const ComplaintPortal = () => {
                                 )}
                             </div>
                         ) : (
-                            <form onSubmit={handleSubmit} className="space-y-8">
+                            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-8">
                                 {(!isAuthenticated || view === 'enquiry') && (
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
                                         {!isAuthenticated && (
                                             <>
-                                                <div className="space-y-2">
+                                                <div className="space-y-1.5 sm:space-y-2">
                                                     <label className="text-[10px] font-black uppercase tracking-[0.2em] text-lime ml-1">Full Name</label>
                                                     <div className="relative group">
                                                         <User className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-lime transition-colors" size={16} />
@@ -299,13 +319,13 @@ const ComplaintPortal = () => {
                                                             required
                                                             type="text"
                                                             placeholder="Name"
-                                                            className="w-full bg-brand-black border border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm focus:outline-none focus:border-lime transition-all"
+                                                            className="w-full bg-brand-black border border-white/10 rounded-xl py-3 sm:py-3.5 pl-11 pr-4 text-white text-xs sm:text-sm focus:outline-none focus:border-lime transition-all"
                                                             value={formData.name}
                                                             onChange={(e) => setFormData({...formData, name: e.target.value})}
                                                         />
                                                     </div>
                                                 </div>
-                                                <div className="space-y-2">
+                                                <div className="space-y-1.5 sm:space-y-2">
                                                     <label className="text-[10px] font-black uppercase tracking-[0.2em] text-lime ml-1">Email</label>
                                                     <div className="relative group">
                                                         <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-lime transition-colors" size={16} />
@@ -313,13 +333,13 @@ const ComplaintPortal = () => {
                                                             required
                                                             type="email"
                                                             placeholder="Email"
-                                                            className="w-full bg-brand-black border border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm focus:outline-none focus:border-lime transition-all"
+                                                            className="w-full bg-brand-black border border-white/10 rounded-xl py-3 sm:py-3.5 pl-11 pr-4 text-white text-xs sm:text-sm focus:outline-none focus:border-lime transition-all"
                                                             value={formData.email}
                                                             onChange={(e) => setFormData({...formData, email: e.target.value})}
                                                         />
                                                     </div>
                                                 </div>
-                                                <div className="space-y-2">
+                                                <div className="space-y-1.5 sm:space-y-2">
                                                     <label className="text-[10px] font-black uppercase tracking-[0.2em] text-lime ml-1">Mobile</label>
                                                     <div className="relative group">
                                                         <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-lime transition-colors" size={16} />
@@ -327,7 +347,7 @@ const ComplaintPortal = () => {
                                                             required
                                                             type="tel"
                                                             placeholder="Phone"
-                                                            className="w-full bg-brand-black border border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-white text-sm focus:outline-none focus:border-lime transition-all"
+                                                            className="w-full bg-brand-black border border-white/10 rounded-xl py-3 sm:py-3.5 pl-11 pr-4 text-white text-xs sm:text-sm focus:outline-none focus:border-lime transition-all"
                                                             value={formData.mobile}
                                                             onChange={(e) => setFormData({...formData, mobile: e.target.value})}
                                                         />
@@ -336,37 +356,56 @@ const ComplaintPortal = () => {
                                             </>
                                         )}
 
-                                        <div className={`space-y-2 ${isAuthenticated ? 'md:col-span-3' : 'md:col-span-3'}`}>
-                                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-lime ml-1">Your Branch</label>
+                                        <div className={`space-y-1.5 sm:space-y-2 ${isAuthenticated ? 'md:col-span-3' : 'md:col-span-3'}`}>
+                                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-lime ml-1">Your Branch / Area</label>
                                             <div className="relative group">
                                                 <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-lime transition-colors" size={16} />
-                                                <select
+                                                <input
                                                     required
-                                                    className="w-full bg-brand-black border border-white/10 rounded-xl py-3.5 pl-11 pr-10 text-white text-sm appearance-none focus:outline-none focus:border-lime transition-all"
-                                                    value={formData.branchId}
-                                                    onChange={(e) => setFormData({...formData, branchId: e.target.value})}
-                                                >
-                                                    <option value="" disabled>Select nearest branch</option>
-                                                    {branches.map(branch => (
-                                                        <option key={branch._id} value={branch._id}>{branch.name}</option>
-                                                    ))}
-                                                </select>
-                                                <ChevronRight className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 rotate-90" size={14} />
+                                                    type="text"
+                                                    list="panama-branches-list"
+                                                    placeholder="e.g. Panama City - Tocumen Intl Airport / Costa del Este"
+                                                    className="w-full bg-brand-black border border-white/10 rounded-xl py-3 sm:py-3.5 pl-11 pr-4 text-white text-xs sm:text-sm focus:outline-none focus:border-lime transition-all font-medium placeholder-gray-600"
+                                                    value={formData.branchArea}
+                                                    onChange={(e) => {
+                                                        const val = e.target.value;
+                                                        const matched = branches.find(b => b.name.toLowerCase() === val.toLowerCase());
+                                                        setFormData({
+                                                            ...formData,
+                                                            branchArea: val,
+                                                            branchId: matched ? matched._id : formData.branchId
+                                                        });
+                                                    }}
+                                                />
+                                                <datalist id="panama-branches-list">
+                                                    {branches.length > 0 
+                                                        ? branches.map(b => <option key={b._id} value={b.name} />)
+                                                        : [
+                                                            'Panama City - Tocumen Intl Airport (PTY)',
+                                                            'Panama City - Costa del Este Hub',
+                                                            'Panama City - Casco Viejo Downtown',
+                                                            'Panama City - Multiplaza Pacific / Punta Pacifica',
+                                                            'Panama City - Marbella / Calle 50 Financial District',
+                                                            'Panama City - Albrook Terminal & Clayton',
+                                                          ].map(area => <option key={area} value={area} />)
+                                                    }
+                                                </datalist>
                                             </div>
+                                            <p className="text-[10px] text-gray-500 ml-1">Type or select your nearest Panama City branch or service area</p>
                                         </div>
                                     </div>
                                 )}
 
                                 {(!isAuthenticated || view === 'enquiry') && (
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                                         {view === 'enquiry' ? (
-                                            <div className="space-y-2">
+                                            <div className="space-y-1.5 sm:space-y-2">
                                                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-lime ml-1">Category</label>
                                                 <div className="relative group">
                                                     <Tag className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-lime transition-colors" size={16} />
                                                     <select
                                                         required
-                                                        className="w-full bg-brand-black border border-white/10 rounded-xl py-3.5 pl-11 pr-10 text-white text-sm appearance-none focus:outline-none focus:border-lime transition-all"
+                                                        className="w-full bg-brand-black border border-white/10 rounded-xl py-3 sm:py-3.5 pl-11 pr-10 text-white text-xs sm:text-sm appearance-none focus:outline-none focus:border-lime transition-all"
                                                         value={formData.category}
                                                         onChange={(e) => setFormData({...formData, category: e.target.value})}
                                                     >
@@ -379,7 +418,7 @@ const ComplaintPortal = () => {
                                                 </div>
                                             </div>
                                         ) : (
-                                            <div className="space-y-2">
+                                            <div className="space-y-1.5 sm:space-y-2">
                                                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-lime ml-1">Relates To</label>
                                                 <div className="flex gap-2">
                                                     {[
@@ -391,7 +430,7 @@ const ComplaintPortal = () => {
                                                             key={item.id}
                                                             type="button"
                                                             onClick={() => setIdType(item.id as any)}
-                                                            className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border transition-all ${
+                                                            className={`flex-1 flex items-center justify-center gap-2 py-2.5 sm:py-3 rounded-xl border transition-all ${
                                                                 idType === item.id 
                                                                 ? 'bg-lime border-lime text-black font-black' 
                                                                 : 'bg-brand-black border-white/10 text-gray-500 hover:border-white/30'
@@ -408,7 +447,7 @@ const ComplaintPortal = () => {
                                 )}
 
                                 {(!isAuthenticated && view === 'new') && (
-                                    <div className="space-y-2 animate-in fade-in slide-in-from-top-2">
+                                    <div className="space-y-1.5 sm:space-y-2 animate-in fade-in slide-in-from-top-2">
                                         <label className="text-[10px] font-black uppercase tracking-[0.2em] text-lime ml-1">
                                             {idType === 'license' ? 'License Number' : idType === 'vehicle' ? 'Registration / Plate' : 'Contact Number'}
                                         </label>
@@ -418,7 +457,7 @@ const ComplaintPortal = () => {
                                                 required
                                                 type="text"
                                                 placeholder={`Enter ${idType} details for verification`}
-                                                className="w-full bg-brand-black border border-white/10 rounded-xl py-4 pl-11 pr-4 text-white text-sm focus:outline-none focus:border-lime transition-all font-bold"
+                                                className="w-full bg-brand-black border border-white/10 rounded-xl py-3.5 pl-11 pr-4 text-white text-xs sm:text-sm focus:outline-none focus:border-lime transition-all font-bold"
                                                 value={formData.idValue}
                                                 onChange={(e) => setFormData({...formData, idValue: e.target.value})}
                                             />
@@ -426,7 +465,7 @@ const ComplaintPortal = () => {
                                     </div>
                                 )}
 
-                                <div className="space-y-2">
+                                <div className="space-y-1.5 sm:space-y-2">
                                     <label className="text-[10px] font-black uppercase tracking-[0.2em] text-lime ml-1">
                                         {view === 'new' ? 'Detailed Description' : 'Your Question'}
                                     </label>
@@ -434,7 +473,7 @@ const ComplaintPortal = () => {
                                         required
                                         rows={4}
                                         placeholder={view === 'new' ? "Please explain the issue clearly..." : "How can we assist you today?"}
-                                        className="w-full bg-brand-black border border-white/10 rounded-2xl py-4 px-5 text-white text-sm focus:outline-none focus:border-lime transition-all resize-none font-medium leading-relaxed"
+                                        className="w-full bg-brand-black border border-white/10 rounded-xl sm:rounded-2xl py-3.5 sm:py-4 px-4 sm:px-5 text-white text-xs sm:text-sm focus:outline-none focus:border-lime transition-all resize-none font-medium leading-relaxed"
                                         value={formData.message}
                                         onChange={(e) => setFormData({...formData, message: e.target.value})}
                                     />
@@ -443,12 +482,12 @@ const ComplaintPortal = () => {
                                 <button
                                     type="submit"
                                     disabled={loading}
-                                    className="w-full bg-lime hover:bg-[#E2FF00] text-black font-black uppercase tracking-[0.2em] text-xs py-5 rounded-2xl flex items-center justify-center gap-3 transition-all duration-300 transform hover:scale-[1.01] active:scale-[0.99] shadow-xl shadow-lime/10 disabled:opacity-50"
+                                    className="w-full bg-lime hover:bg-[#E2FF00] text-black font-black uppercase tracking-[0.2em] text-xs py-3.5 sm:py-5 rounded-xl sm:rounded-2xl flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 transform hover:scale-[1.01] active:scale-[0.99] shadow-xl shadow-lime/10 disabled:opacity-50 cursor-pointer"
                                 >
                                     {loading ? <Loader2 size={18} className="animate-spin" /> : (
                                         <>
                                             <span>Submit {view === 'new' ? 'Complaint' : 'Enquiry'}</span>
-                                            <Send size={16} />
+                                            <Send size={15} />
                                         </>
                                     )}
                                 </button>

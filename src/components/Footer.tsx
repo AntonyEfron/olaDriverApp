@@ -16,7 +16,7 @@ const Footer = () => {
 
   // Precisely defined links from the screenshot
   const companyLinks = ['About', 'Careers', 'Press'];
-  const productLinks = ['Features', 'Pricing', 'Security', 'Integrations'];
+  const productLinks = ['Features', 'Fleet', 'Security', 'Integrations'];
   const resourceLinks = ['Blog', 'Case Studies', 'Documentation', 'Support'];
   const legalLinks = ['Privacy Policy', 'Terms of Service', 'Compliance'];
 
@@ -52,22 +52,22 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl 4xl:max-w-9xl 5xl:max-w-[140rem] mx-auto px-6 py-24 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 lg:gap-20 mb-20 reveal">
+      <div className="max-w-7xl 4xl:max-w-9xl 5xl:max-w-[140rem] mx-auto px-4 sm:px-6 py-12 sm:py-20 lg:py-24 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 lg:gap-20 mb-10 sm:mb-20 reveal">
           {footerSections.map((section) => (
             <div key={section.title}>
-              <h4 className="text-white font-black text-xl mb-8 tracking-tight">{section.title}</h4>
-              <ul className="space-y-4">
+              <h4 className="text-white font-black text-base sm:text-xl mb-4 sm:mb-8 tracking-tight">{section.title}</h4>
+              <ul className="space-y-2.5 sm:space-y-4">
                 {section.links.map((link) => (
                   <li key={link}>
                     <a
                       href={link === 'Support' ? '#support' : '#'}
-                      className="group flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300 transform hover:translate-x-2"
+                      className="group flex items-center gap-2 sm:gap-3 text-gray-400 hover:text-white transition-all duration-300 transform hover:translate-x-1 sm:hover:translate-x-2"
                     >
-                      <div className="w-6 h-6 rounded-full bg-[#D2EE00] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                        <ChevronRight className="w-3.5 h-3.5 text-black stroke-[3.5]" />
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#D2EE00] flex items-center justify-center transition-transform duration-300 group-hover:scale-110 flex-shrink-0">
+                        <ChevronRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-black stroke-[3.5]" />
                       </div>
-                      <span className="text-base md:text-lg font-medium">{link}</span>
+                      <span className="text-xs sm:text-base md:text-lg font-medium">{link}</span>
                     </a>
                   </li>
                 ))}
@@ -77,25 +77,25 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar Divider */}
-        <div className="h-px w-full bg-white/10 mb-10" />
+        <div className="h-px w-full bg-white/10 mb-8 sm:mb-10" />
 
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12 text-center md:text-left">
-            <p className="text-gray-500 text-sm font-medium">© {year} Ola Cars. All rights reserved.</p>
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-6 sm:gap-8">
+          <div className="flex flex-col md:flex-row items-center gap-2 sm:gap-4 md:gap-12 text-center md:text-left">
+            <p className="text-gray-500 text-xs sm:text-sm font-medium">© {year} Ola Cars Panama. All rights reserved.</p>
             <p className="text-gray-600 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-bold hover:text-[#D2EE00] transition-colors cursor-help">
-              CIN: U74140DL2024PTC123456 / GST: 07AAAFO1234A1Z5
+              Panama City, Republic of Panama • RUC: 155702938-2-2024 DV 45
             </p>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
                 href="#"
-                className="w-10 h-10 5xl:w-16 5xl:h-16 rounded-full bg-[#D2EE00] flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(210,238,0,0.5)] group"
+                className="w-9 h-9 sm:w-10 sm:h-10 5xl:w-16 5xl:h-16 rounded-full bg-[#D2EE00] flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(210,238,0,0.5)] group"
                 title={social.label}
               >
-                <social.icon className="w-5 h-5 5xl:w-8 5xl:h-8 text-black transition-transform group-hover:rotate-12" />
+                <social.icon className="w-4 h-4 sm:w-5 sm:h-5 5xl:w-8 5xl:h-8 text-black transition-transform group-hover:rotate-12" />
               </a>
             ))}
           </div>
