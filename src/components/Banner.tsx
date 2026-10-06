@@ -36,10 +36,10 @@ const Banner = () => {
 
       {/* ── Main Hero Content (Full Width) ────────────────── */}
       <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 2xl:px-20 relative z-10 flex-initial lg:flex-1 flex flex-col justify-start lg:justify-center">
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-12 items-center w-full">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center w-full">
           
-          {/* Left Column: Hero Typography (Span 6 on LG/XL) */}
-          <div className="lg:col-span-6 xl:col-span-6 reveal">
+          {/* Left Column: Hero Typography */}
+          <div className="reveal">
             {/* Pill Badge */}
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-lime/10 border border-lime/30 text-lime text-[11px] sm:text-xs font-black mb-3 sm:mb-6 tracking-wide backdrop-blur-md shadow-[0_0_20px_rgba(210,238,0,0.15)]">
               <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
@@ -63,7 +63,7 @@ const Banner = () => {
             </p>
 
             {/* Trust Tags */}
-            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-6 sm:mb-10">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-6 sm:mb-8">
               <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-white/[0.04] border border-white/10 text-gray-300 text-[11px] sm:text-xs font-semibold backdrop-blur-sm">
                 <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-lime" />
                 Airport PTY Direct Pickup
@@ -76,6 +76,17 @@ const Banner = () => {
                 <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-lime" />
                 Pre-Inspected Fleet
               </span>
+            </div>
+
+            {/* Mobile Car Preview (Shown only on mobile/tablet) */}
+            <div className="lg:hidden relative w-full my-4 flex flex-col items-center justify-center">
+              <div className="absolute w-3/4 h-28 bg-lime/20 blur-3xl rounded-full pointer-events-none" />
+              <img 
+                src={heroCar1} 
+                alt="Ola Cars Panama" 
+                className="w-full max-w-[340px] xs:max-w-[400px] h-auto object-contain relative z-10 drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)]"
+              />
+              <div className="w-2/3 h-3 bg-black/80 blur-md rounded-full -mt-2" />
             </div>
 
             {/* Stats Cards */}
@@ -106,49 +117,53 @@ const Banner = () => {
             </div>
           </div>
 
-          {/* Right Column: Hero Vehicles with Floating Glass Chips */}
-          <div className="hidden lg:flex relative h-[420px] sm:h-[480px] md:h-[540px] xl:h-[600px] 3xl:h-[680px] reveal-right items-center justify-end w-full">
-             {/* Neon Glow beneath cars */}
-             <div className="absolute top-1/2 right-[10%] -translate-y-1/2 w-[90%] h-[80%] bg-lime/20 blur-[120px] rounded-full pointer-events-none" />
-             <div className="absolute bottom-6 right-16 w-[70%] h-12 bg-lime/20 blur-2xl rounded-full pointer-events-none" />
+          {/* Right Column: Premium Hero Vehicle Stage (Desktop) */}
+          <div className="hidden lg:flex relative h-[440px] xl:h-[500px] 2xl:h-[540px] reveal-right items-center justify-center w-full">
+             {/* Stage Ambient Lighting */}
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-[560px] h-[300px] bg-lime/20 blur-[100px] rounded-full pointer-events-none" />
+             
+             {/* Glowing Stage Pedestal Ring */}
+             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[85%] max-w-[520px] h-12 border border-lime/30 rounded-full blur-[1px] pointer-events-none" />
+             <div className="absolute bottom-7 left-1/2 -translate-x-1/2 w-[80%] max-w-[480px] h-8 bg-lime/15 blur-lg rounded-full pointer-events-none" />
+             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 w-[75%] max-w-[450px] h-6 bg-black/90 blur-xl rounded-full" />
 
-             {/* Background Car (Yellow SUV) */}
-             <div className="absolute top-[3%] right-[0%] w-[110%] sm:w-[125%] md:w-[135%] xl:w-[140%] animate-floatY opacity-90 z-10" style={{ animationDelay: '0.6s' }}>
+             {/* Background Car (Yellow SUV) - Subtle Fleet Depth */}
+             <div className="absolute top-6 right-6 w-[70%] max-w-[380px] xl:max-w-[420px] opacity-60 z-10 transition-transform duration-700 hover:opacity-80">
                 <img 
                   src={heroCar2} 
                   alt="Premium SUV Panama" 
-                  className="w-full h-auto object-contain drop-shadow-[0_40px_80px_rgba(0,0,0,0.6)]"
+                  className="w-full h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.6)]"
                 />
              </div>
              
-             {/* Foreground Car (Red Sedan) */}
-             <div className="absolute bottom-[3%] right-[-4%] w-[90%] sm:w-[105%] md:w-[120%] xl:w-[125%] animate-floatY z-20">
+             {/* Foreground Car (Red Sedan) - Main Hero Centerpiece */}
+             <div className="relative z-20 w-full max-w-[520px] xl:max-w-[580px] 2xl:max-w-[620px] transition-transform duration-500 hover:scale-[1.02]">
                 <img 
                   src={heroCar1} 
                   alt="Luxury Sedan Panama" 
-                  className="w-full h-auto object-contain drop-shadow-[0_45px_90px_rgba(0,0,0,0.7)]"
+                  className="w-full h-auto object-contain drop-shadow-[0_35px_60px_rgba(0,0,0,0.85)] filter"
                 />
              </div>
 
-             {/* Floating Glass Chip: Airport Pickup */}
-             <div className="absolute top-8 left-0 z-30 bg-[#161616]/85 backdrop-blur-xl border border-white/15 rounded-2xl p-3 shadow-[0_20px_40px_rgba(0,0,0,0.6)] flex items-center gap-3 animate-floatY">
-               <div className="w-9 h-9 rounded-xl bg-lime/15 border border-lime/30 flex items-center justify-center text-lime">
+             {/* Floating Glass Chip: Airport Fast Track */}
+             <div className="absolute top-4 left-0 xl:left-4 z-30 bg-[#141414]/90 backdrop-blur-xl border border-lime/30 rounded-2xl p-3 shadow-[0_20px_40px_rgba(0,0,0,0.8)] flex items-center gap-3 animate-floatY">
+               <div className="w-9 h-9 rounded-xl bg-lime flex items-center justify-center text-black font-black flex-shrink-0 shadow-[0_0_15px_rgba(210,238,0,0.4)]">
                  <Zap size={18} />
                </div>
                <div>
-                 <div className="text-[10px] uppercase font-black text-lime tracking-wider">Tocumen Hub (PTY)</div>
-                 <div className="text-white text-xs font-bold">5-Min Fast Track Pickup</div>
+                 <div className="text-[10px] uppercase font-black text-lime tracking-wider">Fast Service</div>
+                 <div className="text-white text-xs font-bold">5-Min PTY Airport Pickup</div>
                </div>
              </div>
 
-             {/* Floating Glass Chip: Instant Delivery */}
-             <div className="absolute bottom-8 right-8 z-30 bg-[#161616]/85 backdrop-blur-xl border border-lime/30 rounded-2xl p-3 shadow-[0_20px_40px_rgba(0,0,0,0.6)] flex items-center gap-3 animate-floatY" style={{ animationDelay: '1.2s' }}>
-               <div className="w-9 h-9 rounded-xl bg-lime flex items-center justify-center text-black font-black">
+             {/* Floating Glass Chip: Panama Metro Delivery */}
+             <div className="absolute bottom-4 right-0 xl:right-4 z-30 bg-[#141414]/90 backdrop-blur-xl border border-white/15 rounded-2xl p-3 shadow-[0_20px_40px_rgba(0,0,0,0.8)] flex items-center gap-3 animate-floatY" style={{ animationDelay: '1.2s' }}>
+               <div className="w-9 h-9 rounded-xl bg-white/10 border border-lime/30 flex items-center justify-center text-lime font-black flex-shrink-0">
                  <ShieldCheck size={18} />
                </div>
                <div>
                  <div className="text-[10px] uppercase font-black text-gray-400 tracking-wider">Panama City Metro</div>
-                 <div className="text-white text-xs font-bold">Airport & City Delivery</div>
+                 <div className="text-white text-xs font-bold">Direct Doorstep Delivery</div>
                </div>
              </div>
           </div>
